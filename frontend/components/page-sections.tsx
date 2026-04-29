@@ -1,6 +1,7 @@
 import { ReactNode } from 'react'
-import { Card, Spotlight } from '@d-test/ui'
-import { cn } from '@d-test/shared'
+import { Card } from '@/components/ui/card'
+import { Spotlight } from '@/components/ui/spotlight'
+import { cn } from '@/lib/utils'
 
 export const sectionLabelChipClassName =
   'flex w-fit items-center justify-center rounded-full border border-white/12 bg-white/[0.03] px-5 py-2 text-sm font-medium text-zinc-200 backdrop-blur-sm'

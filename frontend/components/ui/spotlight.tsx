@@ -1,5 +1,5 @@
 import React from 'react'
-import { cn } from '@d-test/shared'
+import { cn } from '@/lib/utils'
 
 type SpotlightProps = {
   className?: string

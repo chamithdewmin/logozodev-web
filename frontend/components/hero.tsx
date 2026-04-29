@@ -1,7 +1,8 @@
 import { MoveRight } from 'lucide-react'
 import Link from 'next/link'
 import { sectionLabelChipClassName } from '@/components/page-sections'
-import { Spotlight, SplineScene } from '@d-test/ui'
+import { Spotlight } from '@/components/ui/spotlight'
+import { SplineScene } from '@/components/ui/splite'
 
 export function HeroSection() {
   return (

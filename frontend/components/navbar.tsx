@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Menu, X } from 'lucide-react'
 import { useState } from 'react'
-import { cn } from '@d-test/shared'
+import { cn } from '@/lib/utils'
 
 const links = [
   { label: 'Home', href: '/' },

@@ -1,5 +1,4 @@
 {
-  "extends": "../packages/config/tsconfig.base.json",
   "compilerOptions": {
     "target": "ES2017",
     "lib": ["dom", "dom.iterable", "esnext"],
@@ -20,9 +19,7 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"],
-      "@d-test/ui": ["../../packages/ui/index.ts"],
-      "@d-test/shared": ["../../packages/shared/index.ts"]
+      "@/*": ["./*"]
     }
   },
   "include": [

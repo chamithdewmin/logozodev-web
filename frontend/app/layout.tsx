@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Sora } from "next/font/google";
 import "./globals.css";
-import { cn } from "@d-test/shared";
+import { cn } from "@/lib/utils";
 import { Navbar } from "@/components/navbar";
 import { SiteFooter } from "@/components/site-footer";
 
