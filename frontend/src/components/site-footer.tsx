@@ -49,7 +49,7 @@ const contactItems = [
 ]
 
 const footerHeadingClassName = 'text-[0.95rem] font-semibold leading-none text-zinc-100 md:text-[1rem]'
-const edgeDividerClassName = 'w-full border-t border-white/20'
+const edgeDividerClassName = 'w-full border-t border-white/18'
 
 const InternalOrExternalLink = ({ href, children, className }: { href: string; children: React.ReactNode; className?: string }) =>
   href.startsWith('/') ? (
@@ -64,7 +64,7 @@ const InternalOrExternalLink = ({ href, children, className }: { href: string; c
 
 export function SiteFooter() {
   return (
-    <footer className="mt-12 w-full border-y border-white/20 bg-black font-sans md:mt-20">
+    <footer className="mt-12 w-full border-y border-white/18 bg-black font-sans md:mt-20">
       <div className="mx-auto w-full max-w-6xl px-4 pb-5 md:px-5">
         <div className="px-1 pt-10 pb-7 sm:px-2 md:px-4 md:pt-12 md:pb-9">
           <div className="grid gap-8 md:grid-cols-[1.1fr_2fr]">
@@ -81,7 +81,7 @@ export function SiteFooter() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={social.label}
-                    className="flex size-8 items-center justify-center rounded-lg border border-white/15 bg-white/[0.02] text-zinc-400 transition-colors hover:border-white/30 hover:text-zinc-200"
+                    className="flex size-8 items-center justify-center rounded-lg border border-white/17 bg-brand-frost text-zinc-400 transition-colors hover:border-white/28 hover:text-brand-muted"
                   >
                     <social.icon className="size-3.5" />
                   </a>
@@ -96,7 +96,7 @@ export function SiteFooter() {
                   <ul className="mt-3.5 space-y-2">
                     {col.items.map((item) => (
                       <li key={item.label} className="text-sm text-zinc-300">
-                        <InternalOrExternalLink href={item.href} className="transition-colors hover:text-zinc-100">
+                        <InternalOrExternalLink href={item.href} className="transition-colors hover:text-brand-muted">
                           {item.label}
                         </InternalOrExternalLink>
                       </li>
@@ -110,13 +110,13 @@ export function SiteFooter() {
                   {contactItems.map((item) => (
                     <li key={item.label} className="text-sm text-zinc-300">
                       {item.href ? (
-                        <a href={item.href} className="group inline-flex items-start gap-2 transition-colors hover:text-zinc-100">
-                          <item.icon className="mt-0.5 size-4 shrink-0 text-zinc-400 transition-colors group-hover:text-zinc-200" />
+                        <a href={item.href} className="group inline-flex items-start gap-2 transition-colors hover:text-brand-muted">
+                          <item.icon className="mt-0.5 size-4 shrink-0 text-brand-muted/80 transition-colors group-hover:text-brand-muted" />
                           <span>{item.label}</span>
                         </a>
                       ) : (
                         <div className="inline-flex items-start gap-2">
-                          <item.icon className="mt-0.5 size-4 shrink-0 text-zinc-400" />
+                          <item.icon className="mt-0.5 size-4 shrink-0 text-brand-muted/80" />
                           <span>{item.label}</span>
                         </div>
                       )}
@@ -144,10 +144,10 @@ export function SiteFooter() {
               <div className="flex flex-col justify-between gap-2.5 text-[0.8rem] text-zinc-500 sm:flex-row">
                 <p>© 2026 LogozoDev. All rights reserved.</p>
                 <div className="flex flex-wrap gap-4">
-                  <Link to="/terms-of-service" className="transition-colors hover:text-zinc-300">
+                  <Link to="/terms-of-service" className="transition-colors hover:text-brand-muted">
                     Terms of service
                   </Link>
-                  <Link to="/privacy-policy" className="transition-colors hover:text-zinc-300">
+                  <Link to="/privacy-policy" className="transition-colors hover:text-brand-muted">
                     Privacy policy
                   </Link>
                 </div>

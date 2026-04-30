@@ -15,7 +15,7 @@ export function AnimatedTooltip({ label, children }: { label: string; children: 
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 8, scale: 0.95 }}
             transition={{ duration: 0.18 }}
-            className="pointer-events-none absolute -top-9 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-md border border-white/15 bg-black/90 px-2.5 py-1 text-xs text-zinc-200"
+            className="pointer-events-none absolute -top-9 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-md border border-white/18 bg-black/90 px-2.5 py-1 text-xs text-brand-muted"
           >
             {label}
           </motion.span>

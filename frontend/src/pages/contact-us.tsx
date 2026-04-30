@@ -14,23 +14,23 @@ export default function ContactUsPage() {
         />
         <section className="mx-auto mt-16 w-full max-w-6xl px-4 sm:px-6 md:mt-20">
           <div className="grid gap-5 md:grid-cols-[1.2fr_1fr]">
-            <div className="rounded-3xl border border-white/10 bg-white/[0.02] p-6 sm:p-8 md:p-10">
+            <div className="rounded-3xl border panel-glass p-6 sm:p-8 md:p-10">
               <h2 className="text-2xl font-semibold tracking-tight text-white sm:text-3xl md:text-4xl">Start the conversation</h2>
-              <p className="mt-3 text-base text-zinc-500">We usually respond within one business day.</p>
+              <p className="mt-3 text-base text-white">We usually respond within one business day.</p>
               <form className="mt-7 space-y-4">
                 <div className="grid gap-4 sm:grid-cols-2">
-                  <label className="text-base text-zinc-300">Name<input type="text" className="mt-2 w-full rounded-xl border border-white/10 bg-black/40 px-4 py-3 text-base text-zinc-100 outline-none transition focus:border-white/30" placeholder="Your full name" /></label>
-                  <label className="text-base text-zinc-300">Company<input type="text" className="mt-2 w-full rounded-xl border border-white/10 bg-black/40 px-4 py-3 text-base text-zinc-100 outline-none transition focus:border-white/30" placeholder="Company name" /></label>
+                  <label className="text-base text-white">Name<input type="text" className="form-field-dark mt-2 w-full rounded-xl px-4 py-3 text-base text-zinc-100" placeholder="Your full name" /></label>
+                  <label className="text-base text-white">Company<input type="text" className="form-field-dark mt-2 w-full rounded-xl px-4 py-3 text-base text-zinc-100" placeholder="Company name" /></label>
                 </div>
-                <label className="block text-base text-zinc-300">Email<input type="email" className="mt-2 w-full rounded-xl border border-white/10 bg-black/40 px-4 py-3 text-base text-zinc-100 outline-none transition focus:border-white/30" placeholder="you@company.com" /></label>
-                <label className="block text-base text-zinc-300">Project details<textarea rows={5} className="mt-2 w-full resize-none rounded-xl border border-white/10 bg-black/40 px-4 py-3 text-base text-zinc-100 outline-none transition focus:border-white/30" placeholder="Tell us about your product, timeline, and goals." /></label>
-                <button type="submit" className="min-h-11 rounded-full bg-white px-6 py-3 text-base font-medium text-black transition hover:bg-zinc-200">Send Message</button>
+                <label className="block text-base text-white">Email<input type="email" className="form-field-dark mt-2 w-full rounded-xl px-4 py-3 text-base text-zinc-100" placeholder="you@company.com" /></label>
+                <label className="block text-base text-white">Project details<textarea rows={5} className="form-field-dark mt-2 w-full resize-none rounded-xl px-4 py-3 text-base text-zinc-100" placeholder="Tell us about your product, timeline, and goals." /></label>
+                <button type="submit" className="btn-primary-site min-h-11">Send Message</button>
               </form>
             </div>
             <div className="grid gap-5">
-              <InfoCard title="Phone" description="+94 74 152 5537"><Phone className="mb-5 size-5 text-zinc-300" /></InfoCard>
-              <InfoCard title="Email" description="hello@logozodev.com"><Mail className="mb-5 size-5 text-zinc-300" /></InfoCard>
-              <InfoCard title="Office" description="Tissamaharama, Sri Lanka"><MapPin className="mb-5 size-5 text-zinc-300" /></InfoCard>
+              <InfoCard title="Phone" description="+94 74 152 5537"><Phone className="mb-5 size-5 text-brand-muted" /></InfoCard>
+              <InfoCard title="Email" description="hello@logozodev.com"><Mail className="mb-5 size-5 text-brand-muted" /></InfoCard>
+              <InfoCard title="Office" description="Tissamaharama, Sri Lanka"><MapPin className="mb-5 size-5 text-brand-muted" /></InfoCard>
             </div>
           </div>
         </section>

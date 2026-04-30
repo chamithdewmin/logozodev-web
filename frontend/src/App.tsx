@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { useEffect, useMemo } from 'react'
 import { Route, Routes, useLocation } from 'react-router-dom'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { Navbar } from '@/components/navbar'
@@ -19,6 +19,10 @@ function App() {
   const location = useLocation()
   const reduceMotion = useReducedMotion()
   const overlayNavbar = useMemo(() => location.pathname === '/', [location.pathname])
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+  }, [location.pathname])
+
   const showInnerGlow = useMemo(() => {
     const pathWithoutTrailingSlash = location.pathname.replace(/\/+$/, '') || '/'
     const routesWithoutGlow = new Set([
@@ -40,17 +44,17 @@ function App() {
       <main className="relative flex-1 overflow-hidden">
         {showInnerGlow ? (
           <>
-            <Spotlight className="-top-36 left-0 md:left-48 md:-top-16" fill="white" />
+            <Spotlight className="-top-36 left-0 md:left-48 md:-top-16" fill="#5DD62C" />
           </>
         ) : null}
         <AnimatePresence mode="wait">
           <motion.div
             key={location.pathname}
             className="relative z-10"
-            initial={reduceMotion ? false : { opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={reduceMotion ? {} : { opacity: 0, y: -6 }}
-            transition={{ duration: 0.24, ease: [0.25, 0.46, 0.45, 0.94] }}
+            initial={reduceMotion ? false : { opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={reduceMotion ? {} : { opacity: 0 }}
+            transition={{ duration: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
             <Routes location={location}>
               <Route path="/" element={<HomePage />} />

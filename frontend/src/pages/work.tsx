@@ -1,5 +1,5 @@
-import { BriefcaseBusiness, MessageSquareQuote } from 'lucide-react'
 import { CTASection, PageContainer, PageHero, SectionHeading } from '@/components/page-sections'
+import { TestimonialsCarousel } from '@/components/testimonials-carousel'
 
 const projects = [
   {
@@ -48,70 +48,26 @@ export default function WorkPage() {
           showSpotlight={false}
           showDarkVeil
         />
-        <section className="mx-auto mt-24 w-full max-w-6xl px-6">
+        <section className="mx-auto mt-16 w-full max-w-6xl px-4 sm:px-6 md:mt-20">
           <SectionHeading badge="Project Showcase" title="Real projects. Real business impact." description="Each project highlights who the client was, what service we delivered, and what result the business achieved." />
           <div className="grid gap-5 md:grid-cols-2">
             {projects.map((project) => (
-              <article key={project.projectName} className="overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.04] to-white/[0.01]">
+              <article key={project.projectName} className="overflow-hidden rounded-2xl border border-brand-subtle bg-gradient-brand-card">
                 <img src={project.coverImageUrl} alt={project.projectName} width={1200} height={600} className="h-52 w-full object-cover" />
-                <div className="p-6">
-                  <h3 className="text-2xl font-semibold text-zinc-100">{project.projectName}</h3>
-                  <p className="mt-3 text-base text-zinc-400"><span className="font-medium text-zinc-300">Client:</span> {project.clientType}</p>
-                  <p className="mt-1 text-base text-zinc-400"><span className="font-medium text-zinc-300">Service:</span> {project.serviceType}</p>
-                  <p className="mt-4 text-base leading-relaxed text-zinc-500"><span className="font-medium text-zinc-300">Result:</span> {project.result}</p>
+                <div className="p-4 sm:p-6">
+                  <h3 className="text-xl font-semibold text-zinc-100 sm:text-2xl">{project.projectName}</h3>
+                  <p className="mt-3 text-base text-white"><span className="font-medium text-brand-muted">Client:</span> {project.clientType}</p>
+                  <p className="mt-1 text-base text-white"><span className="font-medium text-brand-muted">Service:</span> {project.serviceType}</p>
+                  <p className="mt-4 text-base leading-relaxed text-white"><span className="font-medium text-brand-muted">Result:</span> {project.result}</p>
                 </div>
               </article>
             ))}
           </div>
         </section>
 
-        <section className="mx-auto mt-20 w-full max-w-6xl px-6">
-          <SectionHeading badge="Before / After" title="Old system vs new system" description="Where available, compare past workflows with upgraded LogozoDev implementations." />
-          <div className="space-y-6">
-            {projects.map((project) => (
-              <article key={`${project.projectName}-before-after`} className="rounded-2xl border border-white/10 bg-white/[0.02] p-6">
-                <div className="mb-5 flex items-center gap-2 text-zinc-100">
-                  <BriefcaseBusiness className="size-4.5 text-zinc-300" />
-                  <h3 className="text-xl font-semibold">{project.projectName}</h3>
-                </div>
-                <div className="grid gap-4 md:grid-cols-2">
-                  <div className="rounded-xl border border-white/10 bg-black/30 p-3">
-                    <p className="mb-3 text-sm uppercase tracking-wide text-zinc-400">Old System</p>
-                    {project.beforeImageUrl ? (
-                      <img src={project.beforeImageUrl} alt={`${project.projectName} old system`} width={1000} height={500} className="h-44 w-full rounded-lg object-cover" />
-                    ) : (
-                      <div className="flex h-44 items-center justify-center rounded-lg border border-dashed border-white/15 text-base text-zinc-500">
-                        Before image coming soon
-                      </div>
-                    )}
-                  </div>
-                  <div className="rounded-xl border border-white/10 bg-black/30 p-3">
-                    <p className="mb-3 text-sm uppercase tracking-wide text-zinc-400">New System</p>
-                    {project.afterImageUrl ? (
-                      <img src={project.afterImageUrl} alt={`${project.projectName} new system`} width={1000} height={500} className="h-44 w-full rounded-lg object-cover" />
-                    ) : (
-                      <div className="flex h-44 items-center justify-center rounded-lg border border-dashed border-white/15 text-base text-zinc-500">
-                        After image coming soon
-                      </div>
-                    )}
-                  </div>
-                </div>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="mx-auto mt-20 w-full max-w-6xl px-6">
+        <section className="mx-auto mt-16 w-full max-w-6xl px-4 sm:px-6 md:mt-20">
           <SectionHeading badge="Client Testimonials" title="What clients say about LogozoDev" description="Strong delivery and practical communication are why clients trust us with critical business projects." />
-          <div className="grid gap-5 md:grid-cols-3">
-            {testimonials.map((item) => (
-              <article key={item.author} className="rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.04] to-white/[0.01] p-6">
-                <MessageSquareQuote className="mb-5 size-5 text-zinc-300" />
-                <p className="text-base leading-relaxed text-zinc-300">&quot;{item.quote}&quot;</p>
-                <p className="mt-4 text-sm uppercase tracking-wide text-zinc-500">{item.author}</p>
-              </article>
-            ))}
-          </div>
+          <TestimonialsCarousel items={testimonials} />
         </section>
 
         <CTASection

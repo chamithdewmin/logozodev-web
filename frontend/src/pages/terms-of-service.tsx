@@ -4,10 +4,10 @@ export default function TermsOfServicePage() {
   return (
     <div className="min-h-screen text-white">
       <PageContainer>
-        <main className="mx-auto mt-10 w-full max-w-6xl px-6">
-          <section className="rounded-3xl border border-white/10 bg-white/[0.02] p-8 md:p-12">
-            <h1 className="text-4xl font-semibold tracking-tight text-white md:text-5xl">Terms of Service</h1>
-            <p className="mt-3 text-sm text-zinc-400">Effective Date: [Add Date]</p>
+        <main className="mx-auto mt-10 w-full max-w-4xl px-4 sm:px-6">
+          <section className="rounded-3xl border panel-glass p-6 sm:p-8 md:p-10">
+            <h1 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl md:text-5xl">Terms of Service</h1>
+            <p className="mt-3 text-sm text-zinc-300 sm:text-base">Effective Date: [Add Date]</p>
             <p className="mt-6 text-base leading-relaxed text-zinc-300">
               Welcome to LogozoDev. By using our website and services, you agree to the following terms:
             </p>
@@ -23,7 +23,7 @@ export default function TermsOfServicePage() {
               <section><h2 className="text-xl font-semibold text-white">9. Termination</h2><p className="mt-3 text-zinc-400">We reserve the right to stop a project if terms are violated or payments are not completed.</p></section>
               <section><h2 className="text-xl font-semibold text-white">10. Changes to Terms</h2><p className="mt-3 text-zinc-400">We may update these terms at any time. Continued use means acceptance of changes.</p></section>
               <section><h2 className="text-xl font-semibold text-white">11. Contact</h2><p className="mt-3 text-zinc-300">Email: hello@logozodev.com</p><p className="mt-1 text-zinc-300">Phone: +94 74 152 5537</p></section>
-              <section className="border-t border-white/10 pt-6 text-zinc-400"><p className="font-medium text-zinc-300">LogozoDev</p><p>Tissamaharama, Sri Lanka</p><p>Serving clients across Sri Lanka remotely</p></section>
+              <section className="border-t border-brand-subtle pt-6 text-zinc-400"><p className="font-medium text-zinc-300">LogozoDev</p><p>Tissamaharama, Sri Lanka</p><p>Serving clients across Sri Lanka remotely</p></section>
             </div>
           </section>
         </main>

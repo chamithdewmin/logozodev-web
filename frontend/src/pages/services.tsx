@@ -46,7 +46,7 @@ export default function ServicesPage() {
           showDarkVeil
         />
 
-        <section className="mx-auto mt-24 w-full max-w-6xl px-6">
+        <section className="mx-auto mt-16 w-full max-w-6xl px-4 sm:px-6 md:mt-20">
           <SectionHeading
             badge="What We Offer"
             title="Clear solutions. Measurable value."
@@ -54,20 +54,27 @@ export default function ServicesPage() {
           />
           <div className="grid gap-5 md:grid-cols-2">
             {services.map((service) => (
-              <InfoCard key={service.title} title={service.title} description={`${service.details} ${service.value}`} className="min-h-[220px]">
-                <service.icon className="mb-5 size-5 text-zinc-300" />
+              <InfoCard
+                key={service.title}
+                title={service.title}
+                description={`${service.details} ${service.value}`}
+                className="group min-h-[238px] rounded-3xl border border-brand-medium bg-gradient-brand-card-deep p-7 transition duration-300 hover:-translate-y-1 hover:border-brand-strong hover:shadow-[0_18px_55px_rgba(0,0,0,0.45)]"
+              >
+                <div className="shadow-brand-icon mb-6 inline-flex size-12 items-center justify-center rounded-2xl border border-brand-medium bg-brand-frost transition duration-300 group-hover:scale-105 group-hover:border-brand-strong group-hover:bg-white/10">
+                  <service.icon className="size-6 text-brand-muted" />
+                </div>
               </InfoCard>
             ))}
           </div>
         </section>
 
-        <section className="mx-auto mt-20 w-full max-w-6xl px-6">
+        <section className="mx-auto mt-16 w-full max-w-6xl px-4 sm:px-6 md:mt-20">
           <InfoCard
             title="Service Delivery Approach"
             description="We start by understanding your workflow, then recommend only the tools and systems that fit your business stage. This keeps projects focused, affordable, and aligned to outcomes."
             className="rounded-3xl p-8 md:p-10"
           >
-            <PackageSearch className="mb-5 size-5 text-zinc-300" />
+            <PackageSearch className="mb-5 size-5 text-brand-muted" />
           </InfoCard>
         </section>
 

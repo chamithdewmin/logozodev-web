@@ -43,7 +43,7 @@ export function Navbar({ overlay = false }: { overlay?: boolean }) {
       )}
     >
       <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
-        <div className="flex items-center justify-between rounded-full border border-white/10 bg-white/[0.03] px-4 py-3 backdrop-blur sm:px-6 sm:py-3.5">
+        <div className="flex items-center justify-between rounded-full border nav-shell px-4 py-3 backdrop-blur sm:px-6 sm:py-3.5">
           <Link to="/" className="flex items-center">
             <img src={logoImage} alt="LogozoDev" width={1200} height={220} className="h-7 w-auto sm:h-8 md:h-9" />
           </Link>
@@ -53,7 +53,7 @@ export function Navbar({ overlay = false }: { overlay?: boolean }) {
               <Link
                 key={link.href}
                 to={link.href}
-                className={cn('transition-colors hover:text-zinc-200', pathname === link.href ? 'text-zinc-100' : 'text-zinc-400')}
+                className={cn('transition-colors hover:text-brand-muted', pathname === link.href ? 'text-brand-muted' : 'text-zinc-400')}
               >
                 {link.label}
               </Link>
@@ -62,7 +62,7 @@ export function Navbar({ overlay = false }: { overlay?: boolean }) {
 
           <Link
             to="/contact-us"
-            className="hidden rounded-full bg-white px-5 py-2.5 text-base font-medium text-black transition hover:bg-zinc-200 sm:inline-flex"
+            className="btn-primary-site btn-primary-site-sm btn-primary-site-brand hidden md:inline-flex"
           >
             Get Started
           </Link>
@@ -72,7 +72,7 @@ export function Navbar({ overlay = false }: { overlay?: boolean }) {
             aria-label={mobileOpen ? 'Close navigation menu' : 'Open navigation menu'}
             aria-expanded={mobileOpen}
             onClick={() => setMobileOpen((open) => !open)}
-            className="inline-flex size-11 items-center justify-center rounded-full border border-white/15 bg-white/[0.03] text-zinc-200 transition hover:bg-white/[0.08] md:hidden"
+            className="inline-flex size-11 items-center justify-center rounded-full border border-white/35 bg-brand-frost text-zinc-200 transition hover:border-white/55 hover:bg-white/10 md:hidden"
           >
             {mobileOpen ? <X className="size-5" /> : <Menu className="size-5" />}
           </button>
@@ -81,7 +81,7 @@ export function Navbar({ overlay = false }: { overlay?: boolean }) {
         <div
           className={cn('overflow-hidden transition-all duration-300 md:hidden', mobileOpen ? 'mt-3 max-h-[28rem] opacity-100' : 'max-h-0 opacity-0')}
         >
-          <nav className="rounded-2xl border border-white/10 bg-black/80 p-3 backdrop-blur">
+          <nav className="rounded-2xl border border-brand-subtle bg-black/80 p-3 backdrop-blur">
             {links.map((link) => (
               <Link
                 key={link.href}
@@ -89,7 +89,7 @@ export function Navbar({ overlay = false }: { overlay?: boolean }) {
                 onClick={() => setMobileOpen(false)}
                 className={cn(
                   'block rounded-xl px-4 py-3 text-base transition-colors',
-                  pathname === link.href ? 'bg-white/10 text-zinc-100' : 'text-zinc-300 hover:bg-white/5 hover:text-zinc-100'
+                  pathname === link.href ? 'bg-white/12 text-zinc-100' : 'text-zinc-300 hover:bg-white/8 hover:text-zinc-100'
                 )}
               >
                 {link.label}
@@ -98,7 +98,7 @@ export function Navbar({ overlay = false }: { overlay?: boolean }) {
             <Link
               to="/contact-us"
               onClick={() => setMobileOpen(false)}
-              className="mt-2 inline-flex w-full items-center justify-center rounded-full bg-white px-5 py-3 text-base font-medium text-black transition hover:bg-zinc-200"
+              className="btn-primary-site btn-primary-site-sm btn-primary-site-brand mt-2 w-full"
             >
               Get Started
             </Link>

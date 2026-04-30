@@ -1,6 +1,7 @@
-import { ClipboardList, Code2, Cpu, Globe, MessageCircle, Palette, ReceiptText, Rocket } from 'lucide-react'
+import { Briefcase, ClipboardList, Code2, Cpu, Globe, Headphones, MessageCircle, Palette, ReceiptText, Rocket, Star } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { sectionLabelChipClassName } from '@/components/page-sections'
+import { TestimonialsCarousel } from '@/components/testimonials-carousel'
 import { AnimatedCounter } from '@/components/ui/animated-counter'
 import { TiltCard } from '@/components/ui/tilt-card'
 
@@ -23,6 +24,18 @@ const processCurveLayout = [
   { left: '34%', top: '32%' },
   { left: '60%', top: '58%' },
   { left: '86%', top: '34%' },
+]
+
+const highlightStats = [
+  { icon: Briefcase, value: 20, suffix: '+', label: 'projects' },
+  { icon: Star, value: 98, suffix: '%', label: 'Client Satisfaction' },
+  { icon: Headphones, value: 24, suffix: '/7', label: 'Support Window' },
+] as const
+
+const testimonials = [
+  { quote: 'LogozoDev helped us build our website quickly and professionally.', author: 'Owner, Local Restaurant' },
+  { quote: 'Our billing process became much faster after the new POS setup from LogozoDev.', author: 'Manager, Retail Shop' },
+  { quote: 'They understood our needs and delivered custom software that actually fits our workflow.', author: 'Founder, Startup Team' },
 ]
 
 export function HomeSections() {
@@ -50,9 +63,9 @@ export function HomeSections() {
                 show: { opacity: 1, y: 0, transition: { duration: 0.6 } },
               }}
             >
-              <TiltCard className="rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.04] to-white/[0.01] p-6 hover:border-white/25 hover:shadow-[0_0_35px_rgba(255,255,255,0.06)]">
-                <div className="mb-5 flex size-9 items-center justify-center rounded-full border border-white/15 bg-white/[0.03]">
-                  <card.icon className="size-4.5 text-zinc-300" />
+              <TiltCard className="rounded-2xl border border-brand-subtle bg-gradient-brand-card p-6 hover:border-brand-medium shadow-brand-soft">
+                <div className="mb-5 flex size-9 items-center justify-center rounded-full border border-brand-medium bg-brand-frost">
+                  <card.icon className="size-4.5 text-brand-muted" />
                 </div>
                 <h3 className="text-lg font-semibold text-zinc-100">{card.title}</h3>
                 <p className="mt-2.5 text-base leading-relaxed text-zinc-500">{card.description}</p>
@@ -61,24 +74,20 @@ export function HomeSections() {
           ))}
         </motion.div>
         <div className="mt-7 grid gap-3 sm:grid-cols-3">
-          <div className="rounded-xl border border-white/12 bg-white/[0.02] p-4 text-center">
-            <p className="text-3xl font-semibold text-zinc-100">
-              <AnimatedCounter value={120} suffix="+" />
-            </p>
-            <p className="mt-1 text-sm text-zinc-400">Projects Delivered</p>
-          </div>
-          <div className="rounded-xl border border-white/12 bg-white/[0.02] p-4 text-center">
-            <p className="text-3xl font-semibold text-zinc-100">
-              <AnimatedCounter value={98} suffix="%" />
-            </p>
-            <p className="mt-1 text-sm text-zinc-400">Client Satisfaction</p>
-          </div>
-          <div className="rounded-xl border border-white/12 bg-white/[0.02] p-4 text-center">
-            <p className="text-3xl font-semibold text-zinc-100">
-              <AnimatedCounter value={24} suffix="/7" />
-            </p>
-            <p className="mt-1 text-sm text-zinc-400">Support Window</p>
-          </div>
+          {highlightStats.map((stat) => (
+            <div
+              key={stat.label}
+              className="flex items-center gap-4 rounded-xl border border-brand-subtle bg-brand-frost p-4 sm:gap-5 sm:p-5"
+            >
+              <stat.icon className="size-9 shrink-0 text-[#5DD62C] sm:size-10" aria-hidden />
+              <div className="min-w-0 text-left">
+                <p className="text-3xl font-semibold tabular-nums text-zinc-100">
+                  <AnimatedCounter value={stat.value} suffix={stat.suffix} />
+                </p>
+                <p className="mt-1 text-sm text-zinc-400">{stat.label}</p>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -102,14 +111,14 @@ export function HomeSections() {
               </defs>
               <path
                 d="M20 270 C170 320, 220 80, 360 120 C500 160, 560 310, 700 240 C840 170, 900 60, 1180 110"
-                stroke="#FFFFFF"
+                stroke="#5DD62C"
                 strokeOpacity="0.95"
                 strokeWidth="4"
                 filter="url(#processGlow)"
               />
               <path
                 d="M20 270 C170 320, 220 80, 360 120 C500 160, 560 310, 700 240 C840 170, 900 60, 1180 110"
-                stroke="#FFFFFF"
+                stroke="#5DD62C"
                 strokeOpacity="0.25"
                 strokeWidth="10"
               />
@@ -121,10 +130,10 @@ export function HomeSections() {
                 className="group absolute -translate-x-1/2 -translate-y-1/2 transition-transform duration-300 ease-out hover:-translate-y-[56%]"
                 style={{ left: processCurveLayout[idx].left, top: processCurveLayout[idx].top }}
               >
-                <div className="mx-auto flex size-12 items-center justify-center rounded-full border border-white/35 bg-black shadow-[0_0_28px_rgba(255,255,255,0.35)] transition duration-300 group-hover:scale-110 group-hover:shadow-[0_0_38px_rgba(255,255,255,0.5)]">
-                  <step.icon className="size-5 text-zinc-100" />
+                <div className="shadow-brand-node shadow-brand-node-hover mx-auto flex size-12 items-center justify-center rounded-full border border-brand-medium bg-black transition duration-300 group-hover:scale-110">
+                  <step.icon className="size-5 text-brand-muted" />
                 </div>
-                <div className="mt-3 w-52 rounded-xl border border-white/10 bg-black/65 p-3 text-center backdrop-blur-sm transition duration-300 group-hover:border-white/25 group-hover:bg-black/85 group-hover:shadow-[0_0_28px_rgba(255,255,255,0.14)]">
+                <div className="shadow-brand-tooltip mt-3 w-52 rounded-xl border border-brand-subtle bg-black/65 p-3 text-center backdrop-blur-sm transition duration-300 group-hover:border-brand-medium group-hover:bg-black/85">
                   <p className="text-base font-semibold text-zinc-100">{step.title}</p>
                   <p className="mt-1 text-sm leading-relaxed text-zinc-400">{step.description}</p>
                 </div>
@@ -136,10 +145,10 @@ export function HomeSections() {
             {processSteps.map((step) => (
               <article
                 key={`${step.title}-mobile`}
-                className="rounded-2xl border border-white/15 bg-black/40 p-4 transition duration-300 hover:-translate-y-1 hover:border-white/30 hover:bg-black/60 hover:shadow-[0_0_20px_rgba(255,255,255,0.12)]"
+                className="shadow-brand-card-hover rounded-2xl border border-brand-medium bg-black/40 p-4 transition duration-300 hover:-translate-y-1 hover:border-brand-strong hover:bg-black/60"
               >
-                <div className="mb-3 flex size-9 items-center justify-center rounded-full border border-white/30 bg-white/5 transition duration-300 hover:scale-105 hover:border-white/45">
-                  <step.icon className="size-4.5 text-zinc-100" />
+                <div className="mb-3 flex size-9 items-center justify-center rounded-full border border-brand-strong bg-brand-frost transition duration-300 hover:scale-105 hover:border-brand-medium">
+                  <step.icon className="size-4.5 text-brand-muted" />
                 </div>
                 <h4 className="text-base font-semibold text-zinc-100">{step.title}</h4>
                 <p className="mt-1.5 text-sm text-zinc-400">{step.description}</p>
@@ -147,6 +156,19 @@ export function HomeSections() {
             ))}
           </div>
         </div>
+      </section>
+
+      <section className="mx-auto mt-16 w-full max-w-[84rem] px-4 sm:px-6 md:mt-20">
+        <div className="mb-9 sm:mb-11">
+          <div className={`${sectionLabelChipClassName} mx-auto mb-5 -translate-y-1`}>Client Testimonials</div>
+          <h2 className="text-center text-2xl font-semibold tracking-tight text-white sm:text-3xl md:text-4xl lg:text-5xl">
+            What clients say about LogozoDev
+          </h2>
+          <p className="mx-auto mt-4 max-w-3xl text-center text-base text-white sm:text-lg">
+            Strong delivery and practical communication are why clients trust us with critical business projects.
+          </p>
+        </div>
+        <TestimonialsCarousel items={testimonials} />
       </section>
     </>
   )

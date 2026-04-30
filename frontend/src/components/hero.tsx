@@ -9,13 +9,12 @@ export function HeroSection() {
   const heroWords = ['Smart', 'IT', 'Solutions']
 
   return (
-    <section className="relative min-h-screen w-full overflow-hidden px-4 pt-24 sm:px-6 md:px-10 md:pt-28 animate-page-fade-in">
-      <div className="pointer-events-none absolute inset-0 animate-hero-clip-main bg-transparent" />
-      <Spotlight className="-top-36 left-0 md:left-48 md:-top-16" fill="white" />
-      <div className="relative z-10 flex min-h-[calc(100vh-7rem)] w-full flex-col md:flex-row">
-        <div className="flex flex-[1.1] flex-col justify-center py-4 md:p-14">
-          <p className={`${sectionLabelChipClassName} animate-hero-enter mb-5`}>Spline 3D Integration</p>
-          <h1 className="animate-hero-enter animate-hero-heading max-w-2xl text-[1.75rem] font-semibold leading-[1.02] tracking-tight text-white sm:text-5xl md:text-7xl lg:text-8xl">
+    <section className="relative w-full overflow-hidden px-4 pt-20 sm:px-6 sm:pt-24 md:min-h-screen md:px-10 md:pt-28">
+      <Spotlight className="-top-36 left-0 md:left-48 md:-top-16" fill="#5DD62C" />
+      <div className="relative z-10 flex w-full flex-col items-center md:min-h-[calc(100vh-7rem)] md:flex-row md:items-stretch">
+        <div className="mt-8 flex w-full flex-[1.1] flex-col items-center justify-center gap-5 py-6 text-center sm:mt-10 sm:gap-6 sm:py-8 md:mt-0 md:items-start md:gap-5 md:p-14 md:py-4 md:text-left">
+          <p className={`${sectionLabelChipClassName} animate-hero-enter`}>Spline 3D Integration</p>
+          <h1 className="animate-hero-enter animate-hero-heading max-w-[20rem] text-[1.95rem] font-semibold leading-[1.04] tracking-tight text-white sm:max-w-[30rem] sm:text-4xl md:max-w-2xl md:text-6xl lg:text-7xl">
             <span className="block whitespace-nowrap">
               {heroWords.map((word, idx) => (
                 <span key={word} className="animate-word-reveal mr-3 inline-block whitespace-nowrap" style={{ animationDelay: `${220 + idx * 90}ms` }}>
@@ -23,16 +22,27 @@ export function HeroSection() {
                 </span>
               ))}
             </span>
-            <span className="text-gradient-shimmer block whitespace-nowrap">for Growing</span>
-            <span className="block whitespace-nowrap">Businesses</span>
+            <span className="block whitespace-nowrap">
+              <span className="animate-word-reveal mr-2 inline-block whitespace-nowrap" style={{ animationDelay: `${220 + 3 * 90}ms` }}>
+                for
+              </span>
+              <span className="animate-word-reveal inline-block whitespace-nowrap text-[#5DD62C]" style={{ animationDelay: `${220 + 4 * 90}ms` }}>
+                Growing
+              </span>
+            </span>
+            <span className="block whitespace-nowrap">
+              <span className="animate-word-reveal inline-block whitespace-nowrap" style={{ animationDelay: `${220 + 5 * 90}ms` }}>
+                Businesses
+              </span>
+            </span>
           </h1>
-          <p className="animate-hero-enter animate-hero-subtext mt-5 max-w-2xl text-base leading-relaxed text-zinc-400 sm:text-lg">
+          <p className="animate-hero-enter animate-hero-subtext max-w-[34ch] text-base leading-relaxed text-zinc-400 sm:max-w-2xl sm:text-lg">
             We create modern websites, powerful POS systems, and tailored digital solutions that help businesses
             enhance their operations, strengthen their brand presence, and grow faster with confidence.
           </p>
-          <div className="animate-hero-enter animate-hero-cta mt-8 flex flex-wrap gap-3.5">
+          <div className="animate-hero-enter animate-hero-cta mt-1 flex w-full flex-col items-center gap-5 sm:flex-row sm:flex-wrap sm:justify-center md:mt-2 md:justify-start">
             <MagneticButton>
-              <Link to="/contact-us" className="inline-flex min-h-11 items-center gap-2 rounded-full bg-white px-6 py-3 text-base font-medium text-black">
+              <Link to="/contact-us" className="btn-primary-site inline-flex min-h-11 items-center gap-2">
                 Start Building
                 <MoveRight className="size-4" />
               </Link>
@@ -40,14 +50,14 @@ export function HeroSection() {
             <MagneticButton>
               <Link
                 to="/work"
-                className="inline-flex min-h-11 items-center rounded-full border border-white/15 bg-white/[0.03] px-6 py-3 text-base font-medium text-zinc-200"
+                className="btn-secondary-site inline-flex min-h-11 items-center"
               >
                 View our Work
               </Link>
             </MagneticButton>
           </div>
         </div>
-        <div className="relative mt-6 min-h-[280px] flex-[0.9] sm:min-h-[320px] md:mt-0 md:min-h-0">
+        <div className="relative mt-6 hidden min-h-[280px] flex-[0.9] sm:min-h-[320px] md:mt-0 md:block md:min-h-0">
           <SplineScene scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode" className="h-full w-full" />
         </div>
       </div>

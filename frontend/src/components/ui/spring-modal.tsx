@@ -22,7 +22,7 @@ export function SpringModal({
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 24, scale: 0.98 }}
             transition={{ type: 'spring', stiffness: 280, damping: 24 }}
-            className="relative z-10 w-full max-w-lg rounded-2xl border border-white/12 bg-zinc-950 p-6"
+            className="relative z-10 w-full max-w-lg rounded-2xl border border-white/18 bg-zinc-950 p-6"
           >
             <h3 className="text-xl font-semibold text-zinc-100">{title}</h3>
             <div className="mt-3 text-zinc-400">{children}</div>
