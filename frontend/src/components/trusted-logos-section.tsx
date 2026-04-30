@@ -20,13 +20,13 @@ export function TrustedLogosSection() {
         Brands We&apos;ve Worked With
       </h3>
       <div className="mt-10 sm:mt-12">
-        <div className="overflow-hidden rounded-xl bg-black px-3 pt-2 sm:px-6 sm:pt-3 md:px-8">
+        <div className="overflow-hidden rounded-xl bg-black pt-2 sm:pt-3">
           <div className="text-zinc-300">
             <LogoLoop
               logos={trustedLogos}
               speed={90}
               direction="left"
-              logoHeight={44}
+              logoHeight={60}
               gap={42}
               hoverSpeed={20}
               scaleOnHover

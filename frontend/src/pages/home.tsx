@@ -4,7 +4,7 @@ import { TrustedLogosSection } from '@/components/trusted-logos-section'
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen text-white">
       <HeroSection />
       <div className="mx-auto w-full max-w-[1480px]">
         <TrustedLogosSection />

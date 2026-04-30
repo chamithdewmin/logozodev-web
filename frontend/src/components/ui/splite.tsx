@@ -39,14 +39,14 @@ export function SplineScene({ scene, className }: SplineSceneProps) {
         <Suspense
           fallback={
             <div className="flex h-full w-full items-center justify-center">
-              <span className="loader" />
+              <div className="skeleton-shimmer h-[78%] w-[88%] rounded-2xl border border-white/10" />
             </div>
           }
         >
           <Spline scene={scene} className="h-full w-full" />
         </Suspense>
       ) : (
-        <div className="h-full w-full bg-gradient-to-br from-zinc-900 via-zinc-950 to-black" />
+        <div className="skeleton-shimmer h-full w-full rounded-2xl border border-white/10" />
       )}
     </div>
   )

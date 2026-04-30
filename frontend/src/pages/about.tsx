@@ -10,6 +10,7 @@ export default function AboutPage() {
           title="About LogozoDev"
           description="LogozoDev is a modern IT solutions company helping small and growing businesses succeed in the digital world through websites, POS systems, branding, and custom software tailored to each client."
           showSpotlight={false}
+          showDarkVeil
         />
 
         <section className="mx-auto mt-24 w-full max-w-6xl px-6">

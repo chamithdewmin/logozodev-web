@@ -43,6 +43,7 @@ export default function ServicesPage() {
           title="Practical IT services built for real business growth."
           description="LogozoDev delivers complete digital solutions for small and growing businesses, from websites and POS systems to branding, software, and ongoing IT guidance."
           showSpotlight={false}
+          showDarkVeil
         />
 
         <section className="mx-auto mt-24 w-full max-w-6xl px-6">

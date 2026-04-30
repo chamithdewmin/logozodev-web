@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { Menu, X } from 'lucide-react'
 import { cn } from '@/lib/utils'
@@ -18,9 +18,30 @@ export function Navbar({ overlay = false }: { overlay?: boolean }) {
   const pathname = location.pathname
   const shouldOverlay = overlay || pathname === '/'
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [hidden, setHidden] = useState(false)
+
+  useEffect(() => {
+    let lastY = window.scrollY
+
+    const onScroll = () => {
+      const currentY = window.scrollY
+      const scrollingDown = currentY > lastY
+      setHidden(scrollingDown && currentY > 100 && !mobileOpen)
+      lastY = currentY
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [mobileOpen])
 
   return (
-    <header className={cn('isolate z-50 w-full pt-7', shouldOverlay ? 'absolute inset-x-0 top-0' : 'relative')}>
+    <header
+      className={cn(
+        'isolate z-50 w-full pt-7 transition-transform duration-300',
+        shouldOverlay ? 'absolute inset-x-0 top-0' : 'sticky top-0',
+        hidden ? '-translate-y-[130%]' : 'translate-y-0'
+      )}
+    >
       <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
         <div className="flex items-center justify-between rounded-full border border-white/10 bg-white/[0.03] px-4 py-3 backdrop-blur sm:px-6 sm:py-3.5">
           <Link to="/" className="flex items-center">

@@ -10,6 +10,7 @@ export default function ContactUsPage() {
           title="Tell us what you are building."
           description="Share your goals, timeline, and current challenges. We will come back with a practical plan tailored to your team."
           showSpotlight={false}
+          showDarkVeil
         />
         <section className="mx-auto mt-16 w-full max-w-6xl px-4 sm:px-6 md:mt-20">
           <div className="grid gap-5 md:grid-cols-[1.2fr_1fr]">

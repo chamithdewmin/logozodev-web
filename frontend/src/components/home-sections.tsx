@@ -1,5 +1,8 @@
 import { ClipboardList, Code2, Cpu, Globe, MessageCircle, Palette, ReceiptText, Rocket } from 'lucide-react'
+import { motion } from 'framer-motion'
 import { sectionLabelChipClassName } from '@/components/page-sections'
+import { AnimatedCounter } from '@/components/ui/animated-counter'
+import { TiltCard } from '@/components/ui/tilt-card'
 
 const serviceCards = [
   { icon: Globe, title: 'Website Development', description: 'Modern business websites that are fast, responsive, and conversion-focused.' },
@@ -27,19 +30,55 @@ export function HomeSections() {
     <>
       <section className="mx-auto mt-16 w-full max-w-[84rem] px-4 sm:px-6 md:mt-24">
         <div className={`${sectionLabelChipClassName} mx-auto mb-11`}>What We Offer</div>
-        <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
+        <motion.div
+          className="grid gap-5 sm:grid-cols-2 xl:grid-cols-4"
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={{
+            hidden: {},
+            show: {
+              transition: { staggerChildren: 0.12 },
+            },
+          }}
+        >
           {serviceCards.map((card) => (
-            <article
+            <motion.article
               key={card.title}
-              className="rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.04] to-white/[0.01] p-6 transition duration-300 hover:-translate-y-1 hover:border-white/25 hover:shadow-[0_0_35px_rgba(255,255,255,0.06)]"
+              variants={{
+                hidden: { opacity: 0, y: 26 },
+                show: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+              }}
             >
-              <div className="mb-5 flex size-9 items-center justify-center rounded-full border border-white/15 bg-white/[0.03]">
-                <card.icon className="size-4.5 text-zinc-300" />
-              </div>
-              <h3 className="text-lg font-semibold text-zinc-100">{card.title}</h3>
-              <p className="mt-2.5 text-base leading-relaxed text-zinc-500">{card.description}</p>
-            </article>
+              <TiltCard className="rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.04] to-white/[0.01] p-6 hover:border-white/25 hover:shadow-[0_0_35px_rgba(255,255,255,0.06)]">
+                <div className="mb-5 flex size-9 items-center justify-center rounded-full border border-white/15 bg-white/[0.03]">
+                  <card.icon className="size-4.5 text-zinc-300" />
+                </div>
+                <h3 className="text-lg font-semibold text-zinc-100">{card.title}</h3>
+                <p className="mt-2.5 text-base leading-relaxed text-zinc-500">{card.description}</p>
+              </TiltCard>
+            </motion.article>
           ))}
+        </motion.div>
+        <div className="mt-7 grid gap-3 sm:grid-cols-3">
+          <div className="rounded-xl border border-white/12 bg-white/[0.02] p-4 text-center">
+            <p className="text-3xl font-semibold text-zinc-100">
+              <AnimatedCounter value={120} suffix="+" />
+            </p>
+            <p className="mt-1 text-sm text-zinc-400">Projects Delivered</p>
+          </div>
+          <div className="rounded-xl border border-white/12 bg-white/[0.02] p-4 text-center">
+            <p className="text-3xl font-semibold text-zinc-100">
+              <AnimatedCounter value={98} suffix="%" />
+            </p>
+            <p className="mt-1 text-sm text-zinc-400">Client Satisfaction</p>
+          </div>
+          <div className="rounded-xl border border-white/12 bg-white/[0.02] p-4 text-center">
+            <p className="text-3xl font-semibold text-zinc-100">
+              <AnimatedCounter value={24} suffix="/7" />
+            </p>
+            <p className="mt-1 text-sm text-zinc-400">Support Window</p>
+          </div>
         </div>
       </section>
 

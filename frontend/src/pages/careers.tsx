@@ -32,6 +32,7 @@ export default function CareersPage() {
           title="Build the Future of Digital Solutions With Us"
           description="At LogozoDev, we create modern websites, POS systems, branding, and custom digital solutions for small and growing businesses. We are a growing IT solutions company based in Sri Lanka, working remotely with clients across the country."
           showSpotlight={false}
+          showDarkVeil
         >
           <div className="flex flex-wrap gap-3">
             <a href="#open-roles" className="rounded-full bg-white px-6 py-3 text-base font-medium text-black transition hover:bg-zinc-200">

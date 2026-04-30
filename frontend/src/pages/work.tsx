@@ -46,6 +46,7 @@ export default function WorkPage() {
           title="Project Showcase built for client trust."
           description="Explore real LogozoDev work across websites, POS systems, branding, and software solutions with clear business outcomes."
           showSpotlight={false}
+          showDarkVeil
         />
         <section className="mx-auto mt-24 w-full max-w-6xl px-6">
           <SectionHeading badge="Project Showcase" title="Real projects. Real business impact." description="Each project highlights who the client was, what service we delivered, and what result the business achieved." />

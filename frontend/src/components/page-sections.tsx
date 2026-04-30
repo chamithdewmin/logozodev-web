@@ -1,5 +1,7 @@
 import type { ReactNode } from 'react'
+import { motion, useReducedMotion } from 'framer-motion'
 import { Card } from '@/components/ui/card'
+import DarkVeil from '@/components/ui/dark-veil'
 import { Spotlight } from '@/components/ui/spotlight'
 import { cn } from '@/lib/utils'
 
@@ -7,7 +9,17 @@ export const sectionLabelChipClassName =
   'flex w-fit items-center justify-center rounded-full border border-white/12 bg-white/[0.03] px-5 py-2 text-sm font-medium text-zinc-200 backdrop-blur-sm'
 
 export function PageContainer({ children }: { children: ReactNode }) {
-  return <div className="mx-auto w-full max-w-[1280px] overflow-x-clip">{children}</div>
+  return (
+    <motion.div
+      className="mx-auto w-full max-w-[1280px] overflow-x-clip"
+      initial={{ opacity: 0, y: 18 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.1 }}
+      transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+    >
+      {children}
+    </motion.div>
+  )
 }
 
 export function PageHero({
@@ -16,16 +28,23 @@ export function PageHero({
   description,
   children,
   showSpotlight = true,
+  showDarkVeil = false,
 }: {
   eyebrow: string
   title: string
   description: string
   children?: ReactNode
   showSpotlight?: boolean
+  showDarkVeil?: boolean
 }) {
   return (
-    <section className="mx-auto mt-8 w-full max-w-6xl px-4 sm:px-6 md:mt-10">
-      <div className="relative overflow-hidden p-6 sm:p-8 md:p-12 lg:p-14">
+    <section className={cn('mx-auto w-full max-w-6xl px-4 sm:px-6', showDarkVeil ? 'mt-0 md:mt-0' : 'mt-8 md:mt-10')}>
+      {showDarkVeil ? (
+        <div className="pointer-events-none absolute left-1/2 top-0 h-[600px] w-screen -translate-x-1/2 opacity-55">
+          <DarkVeil hueShift={0} noiseIntensity={0} scanlineIntensity={0} speed={0.5} scanlineFrequency={0} warpAmount={0} />
+        </div>
+      ) : null}
+      <div className={cn('relative p-6 sm:p-8 md:p-12 lg:p-14', showDarkVeil ? 'overflow-visible bg-transparent' : 'overflow-hidden')}>
         {showSpotlight ? <Spotlight className="-top-36 left-0 md:left-48 md:-top-16" fill="white" /> : null}
         <div className="relative z-10 text-center">
           <p className={cn(sectionLabelChipClassName, 'mx-auto mb-5')}>{eyebrow}</p>
@@ -69,12 +88,20 @@ export function InfoCard({
   className?: string
   children?: ReactNode
 }) {
+  const reduceMotion = useReducedMotion()
+
   return (
-    <Card className={cn('rounded-2xl border-white/10 bg-gradient-to-b from-white/[0.04] to-white/[0.01] p-6', className)}>
-      {children}
-      <h3 className="text-lg font-semibold text-zinc-100">{title}</h3>
-      <p className="mt-2.5 text-base leading-relaxed text-zinc-500">{description}</p>
-    </Card>
+    <motion.div
+      whileHover={reduceMotion ? {} : { rotateX: 4, rotateY: -4, scale: 1.01 }}
+      transition={{ type: 'spring', stiffness: 260, damping: 18 }}
+      style={{ transformStyle: 'preserve-3d' }}
+    >
+      <Card className={cn('rounded-2xl border-white/10 bg-gradient-to-b from-white/[0.04] to-white/[0.01] p-6', className)}>
+        {children}
+        <h3 className="text-lg font-semibold text-zinc-100">{title}</h3>
+        <p className="mt-2.5 text-base leading-relaxed text-zinc-500">{description}</p>
+      </Card>
+    </motion.div>
   )
 }
 
@@ -90,7 +117,7 @@ export function CTASection({
   secondaryLabel: string
 }) {
   return (
-    <section className="mx-auto mt-16 w-full max-w-6xl px-4 sm:px-6 md:mt-20">
+    <section className="mx-auto mt-16 w-full max-w-6xl px-4 sm:px-6 md:mt-20 animate-page-fade-in">
       <Card className="rounded-3xl border-white/10 bg-white/[0.02] p-6 text-center sm:p-8 md:p-12">
         <h3 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl md:text-5xl">{title}</h3>
         <p className="mx-auto mt-4 max-w-2xl text-base text-zinc-500 sm:text-lg">{description}</p>
