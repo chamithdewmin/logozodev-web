@@ -19,7 +19,7 @@ function App() {
   const overlayNavbar = useMemo(() => location.pathname === '/', [location.pathname])
   const showInnerGlow = useMemo(() => {
     const pathWithoutTrailingSlash = location.pathname.replace(/\/+$/, '') || '/'
-    const routesWithoutGlow = new Set(['/about', '/careers', '/work', '/contact-us'])
+    const routesWithoutGlow = new Set(['/services', '/about', '/careers', '/work', '/contact-us'])
     return pathWithoutTrailingSlash !== '/' && !routesWithoutGlow.has(pathWithoutTrailingSlash)
   }, [location.pathname])
 
