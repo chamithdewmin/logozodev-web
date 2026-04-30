@@ -38,13 +38,13 @@ export function PageHero({
   showDarkVeil?: boolean
 }) {
   return (
-    <section className={cn('mx-auto w-full max-w-6xl px-4 sm:px-6', showDarkVeil ? 'mt-0 md:mt-0' : 'mt-8 md:mt-10')}>
-      {showDarkVeil ? (
-        <div className="pointer-events-none absolute left-1/2 top-0 h-[600px] w-screen -translate-x-1/2 opacity-55">
-          <DarkVeil hueShift={0} noiseIntensity={0} scanlineIntensity={0} speed={0.5} scanlineFrequency={0} warpAmount={0} />
-        </div>
-      ) : null}
-      <div className={cn('relative p-6 sm:p-8 md:p-12 lg:p-14', showDarkVeil ? 'overflow-visible bg-transparent' : 'overflow-hidden')}>
+    <section className="mx-auto mt-8 w-full max-w-6xl px-4 sm:px-6 md:mt-10">
+      <div className="relative overflow-visible p-6 sm:p-8 md:p-12 lg:p-14">
+        {showDarkVeil ? (
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-[620px] overflow-hidden rounded-t-3xl opacity-55">
+            <DarkVeil hueShift={120} noiseIntensity={0} scanlineIntensity={0} speed={0.5} scanlineFrequency={0} warpAmount={0} />
+          </div>
+        ) : null}
         {showSpotlight ? <Spotlight className="-top-36 left-0 md:left-48 md:-top-16" fill="white" /> : null}
         <div className="relative z-10 text-center">
           <p className={cn(sectionLabelChipClassName, 'mx-auto mb-5')}>{eyebrow}</p>
