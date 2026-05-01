@@ -6,7 +6,16 @@ export default function ContactUsPage() {
   return (
     <div className="min-h-screen text-white">
       <PageContainer>
-        <PageHero eyebrow="Contact Us" title="Tell us what you are building." showSpotlight={false} showDarkVeil />
+        <PageHero
+          eyebrow="Contact Us"
+          title={
+            <>
+              Tell us what you are <span className="text-[var(--brand)]">building.</span>
+            </>
+          }
+          showSpotlight={false}
+          showDarkVeil
+        />
         <section className="mx-auto mt-16 w-full max-w-7xl px-4 sm:px-6 md:mt-20">
           <div className="grid gap-5 md:grid-cols-[1.2fr_1fr]">
             <div className="rounded-3xl border panel-glass p-6 sm:p-8 md:p-10">

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { ArrowRight } from 'lucide-react'
 import { useSiteAlert } from '@/components/site-alert-provider'
 import {
   validateCvFile,
@@ -229,8 +230,9 @@ export function CareersApplicationForm() {
           </p>
         ) : null}
       </div>
-      <button type="submit" className="btn-primary-site">
+      <button type="submit" className="btn-primary-site btn-primary-site-brand inline-flex items-center gap-2">
         Submit Application
+        <ArrowRight className="size-4" aria-hidden />
       </button>
     </form>
   )

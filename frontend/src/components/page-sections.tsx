@@ -2,7 +2,6 @@ import type { ReactNode } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
 import { MoveRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
-import DarkVeil from '@/components/ui/dark-veil'
 import { Spotlight } from '@/components/ui/spotlight'
 import { useSiteAlert } from '@/components/site-alert-provider'
 import { cn } from '@/lib/utils'
@@ -49,7 +48,7 @@ export function PageHero({
   showDarkVeil = false,
 }: {
   eyebrow: string
-  title: string
+  title: ReactNode
   description?: string
   children?: ReactNode
   showSpotlight?: boolean
@@ -60,11 +59,9 @@ export function PageHero({
       <div className="relative isolate overflow-visible py-6 px-4 sm:py-7 sm:px-5 md:py-8 md:px-6 lg:py-9 lg:px-7">
         {showDarkVeil ? (
           <div
-            className="pointer-events-none absolute inset-x-0 -top-2 z-[-1] h-[260px] overflow-hidden rounded-t-3xl opacity-50 sm:top-0 sm:h-[288px] md:top-1 md:h-[300px]"
+            className="pointer-events-none absolute inset-x-0 -top-2 z-[-1] h-[260px] rounded-t-3xl bg-black/45 sm:top-0 sm:h-[288px] md:top-1 md:h-[300px]"
             aria-hidden="true"
-          >
-            <DarkVeil hueShift={120} noiseIntensity={0} scanlineIntensity={0} speed={0.5} scanlineFrequency={0} warpAmount={0} />
-          </div>
+          />
         ) : null}
         {showSpotlight ? <Spotlight className="-top-28 left-0 z-10 sm:-top-32 md:left-48 md:-top-14" fill="#5DD62C" /> : null}
         <div className="relative z-20 text-center">
@@ -88,7 +85,7 @@ export function SectionHeading({
   description,
 }: {
   badge: string
-  title: string
+  title: ReactNode
   description: string
 }) {
   return (

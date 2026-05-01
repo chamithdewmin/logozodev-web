@@ -17,13 +17,16 @@ export function WorkProjectCard({ project, onOpen }: WorkProjectCardProps) {
           'hover:-translate-y-0.5 hover:shadow-[0_0_28px_rgb(255_255_255_/0.08)]',
         )}
       >
-        <img
-          src={project.coverImageUrl}
-          alt=""
-          width={1200}
-          height={800}
-          className="aspect-[5/4] w-full object-cover sm:aspect-[11/9]"
-        />
+        <div className="relative">
+          <img
+            src={project.coverImageUrl}
+            alt=""
+            width={1200}
+            height={800}
+            className="aspect-[5/4] w-full object-cover sm:aspect-[11/9]"
+          />
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent to-zinc-950" aria-hidden />
+        </div>
         <div className="relative px-4 pb-4 pt-5 sm:px-5 sm:pb-5">
           <img src={logoUrl} alt="LogozoDev" className="h-6 w-auto opacity-90" />
           <h3 className="mt-3 font-heading text-2xl font-semibold tracking-tight text-white">{project.projectName}</h3>

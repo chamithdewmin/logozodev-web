@@ -1,9 +1,11 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { CTASection, PageContainer, PageHero, SectionHeading } from '@/components/page-sections'
 import { TestimonialsCarousel } from '@/components/testimonials-carousel'
 import { WorkProjectCard } from '@/components/work-project-card'
 import { WorkProjectModal } from '@/components/work-project-modal'
 import type { WorkProject } from '@/types/work-project'
+import { cn } from '@/lib/utils'
+import { Clock3, Rocket, Smile, TrendingUp } from 'lucide-react'
 
 const projects: WorkProject[] = [
   {
@@ -113,24 +115,117 @@ const testimonials = [
   { quote: 'They understood our needs and delivered custom software that actually fits our workflow.', author: 'Founder, Startup Team' },
 ]
 
+const workStats = [
+  { icon: Rocket, value: '50+', label: 'Projects Delivered' },
+  { icon: Smile, value: '35+', label: 'Happy Clients' },
+  { icon: TrendingUp, value: '98%', label: 'Client Satisfaction' },
+  { icon: Clock3, value: '5+', label: 'Years of Excellence' },
+]
+
+type WorkFilterKey = 'all' | 'web' | 'software' | 'pos' | 'dashboard'
+
+const workFilters: { key: WorkFilterKey; label: string }[] = [
+  { key: 'all', label: 'All Projects' },
+  { key: 'web', label: 'Web Development' },
+  { key: 'software', label: 'Software Solutions' },
+  { key: 'pos', label: 'POS Systems' },
+  { key: 'dashboard', label: 'Dashboards' },
+]
+
 export default function WorkPage() {
   const [activeProject, setActiveProject] = useState<WorkProject | null>(null)
+  const [activeFilter, setActiveFilter] = useState<WorkFilterKey>('all')
+
+  const filteredProjects = useMemo(() => {
+    if (activeFilter === 'all') {
+      return projects
+    }
+
+    return projects.filter((project) => {
+      const serviceType = project.serviceType.toLowerCase()
+      const chips = project.serviceChips.map((chip) => chip.toLowerCase())
+
+      if (activeFilter === 'web') {
+        return serviceType.includes('website') || chips.includes('website')
+      }
+      if (activeFilter === 'software') {
+        return serviceType.includes('software')
+      }
+      if (activeFilter === 'pos') {
+        return serviceType.includes('pos') || chips.includes('pos')
+      }
+
+      return chips.includes('dashboard')
+    })
+  }, [activeFilter])
 
   return (
     <div className="min-h-screen text-white">
       <PageContainer>
-        <PageHero eyebrow="Work" title="Project Showcase built for client trust." showSpotlight={false} showDarkVeil />
+        <PageHero
+          eyebrow="Work"
+          title={
+            <>
+              Projects that deliver <span className="text-[var(--brand)]">results.</span>
+            </>
+          }
+          showSpotlight={false}
+          showDarkVeil
+        />
         <section className="mx-auto mt-16 w-full max-w-7xl px-4 sm:px-6 md:mt-20">
           <SectionHeading badge="Project Showcase" title="Real projects. Real business impact." description="Each project highlights who the client was, what service we delivered, and what result the business achieved." />
+          <div className="mb-6 overflow-x-auto sm:mb-7">
+            <div className="mx-auto flex min-w-max items-center justify-center gap-1.5">
+              {workFilters.map((filter) => (
+                <button
+                  key={filter.key}
+                  type="button"
+                  onClick={() => setActiveFilter(filter.key)}
+                  className={cn(
+                    'rounded-full px-4 py-2 text-sm font-medium transition-colors duration-200 sm:px-5',
+                    activeFilter === filter.key
+                      ? 'border border-[color-mix(in_srgb,var(--brand)_52%,transparent)] bg-[color-mix(in_srgb,var(--brand)_16%,transparent)] text-[var(--brand)]'
+                      : 'border border-transparent text-zinc-300 hover:text-zinc-100',
+                  )}
+                >
+                  {filter.label}
+                </button>
+              ))}
+            </div>
+          </div>
           <div className="grid gap-5 md:grid-cols-2">
-            {projects.map((project) => (
+            {filteredProjects.map((project) => (
               <WorkProjectCard key={project.slug} project={project} onOpen={() => setActiveProject(project)} />
             ))}
           </div>
         </section>
 
+        <section className="mx-auto mt-10 w-full max-w-7xl px-4 sm:px-6 md:mt-12">
+          <div className="grid gap-2 rounded-3xl border border-brand-medium bg-gradient-brand-card-deep p-3 sm:grid-cols-2 sm:gap-3 sm:p-4 lg:grid-cols-4">
+            {workStats.map((stat) => (
+              <article key={stat.label} className="flex items-center gap-3 rounded-2xl p-3 sm:p-4 lg:rounded-none lg:p-4 lg:not-last:border-r lg:not-last:border-brand-medium">
+                <div className="inline-flex size-10 shrink-0 items-center justify-center rounded-xl border border-brand-medium bg-brand-frost">
+                  <stat.icon className="size-5 text-[var(--brand)]" aria-hidden />
+                </div>
+                <div>
+                  <p className="text-3xl font-semibold leading-none text-[var(--brand)]">{stat.value}</p>
+                  <p className="mt-1 text-sm text-zinc-300">{stat.label}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
         <section className="mx-auto mt-16 w-full max-w-7xl px-4 sm:px-6 md:mt-20">
-          <SectionHeading badge="Client Testimonials" title="What clients say about LogozoDev" description="Strong delivery and practical communication are why clients trust us with critical business projects." />
+          <SectionHeading
+            badge="Client Testimonials"
+            title={
+              <>
+                What clients say about <span className="text-[var(--brand)]">LogozoDev</span>
+              </>
+            }
+            description="Strong delivery and practical communication are why clients trust us with critical business projects."
+          />
           <TestimonialsCarousel items={testimonials} />
         </section>
 

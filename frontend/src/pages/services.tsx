@@ -1,6 +1,10 @@
-import { ArrowRight, Bot, Brush, CheckCircle2, MonitorSmartphone, PackageSearch, ReceiptText, Wrench } from 'lucide-react'
+import { ArrowRight, Bot, Brush, CheckCircle2, Cpu, Headset, MonitorSmartphone, ReceiptText, Target, TrendingUp, Wrench } from 'lucide-react'
 import { Link } from 'react-router-dom'
-import { CTASection, InfoCard, PageContainer, PageHero, SectionHeading } from '@/components/page-sections'
+import { CTASection, PageContainer, PageHero, SectionHeading } from '@/components/page-sections'
+import customSoftwareImage from '@/assets/custome software.png'
+import graphicImage from '@/assets/graphic.png'
+import posImage from '@/assets/pos.png'
+import webImage from '@/assets/web.png'
 
 const services = [
   {
@@ -35,6 +39,29 @@ const services = [
   },
 ]
 
+const serviceHighlights = [
+  {
+    icon: Target,
+    title: 'Business-Focused',
+    description: 'We solve real problems.',
+  },
+  {
+    icon: Headset,
+    title: 'End-to-End Support',
+    description: "We're with you, always.",
+  },
+  {
+    icon: TrendingUp,
+    title: 'Scalable Solutions',
+    description: 'Built for growth.',
+  },
+  {
+    icon: Cpu,
+    title: 'Modern Technology',
+    description: 'Future-ready systems.',
+  },
+]
+
 function toBullets(details: string): string[] {
   return details
     .replace(/\.$/, '')
@@ -48,7 +75,18 @@ export default function ServicesPage() {
   return (
     <div className="min-h-screen text-white">
       <PageContainer>
-        <PageHero eyebrow="Services" title="Practical IT services built for real business growth." showSpotlight={false} showDarkVeil />
+        <PageHero
+          eyebrow="Services"
+          title={
+            <>
+              Smart IT Solutions.
+              <br />
+              <span className="text-[var(--brand)]">Real Business Impact.</span>
+            </>
+          }
+          showSpotlight={false}
+          showDarkVeil
+        />
 
         <section className="mx-auto mt-16 w-full max-w-7xl px-4 sm:px-6 md:mt-20">
           <SectionHeading
@@ -73,6 +111,16 @@ export default function ServicesPage() {
 
                 <h3 className="mt-6 text-xl font-semibold tracking-tight text-zinc-100 sm:text-2xl">{service.title}</h3>
                 <p className="mt-3 text-base leading-relaxed text-zinc-400">{service.value}</p>
+                {service.title === 'Website Development' ? (
+                  <img src={webImage} alt="Website development showcase" className="mt-5 h-auto w-full rounded-2xl object-contain" />
+                ) : null}
+                {service.title === 'POS Systems' ? <img src={posImage} alt="POS system interface" className="mt-5 h-auto w-full rounded-2xl object-contain" /> : null}
+                {service.title === 'Graphic Design & Branding' ? (
+                  <img src={graphicImage} alt="Graphic design and branding showcase" className="mt-5 h-auto w-full rounded-2xl object-contain" />
+                ) : null}
+                {service.title === 'Custom Software Solutions' ? (
+                  <img src={customSoftwareImage} alt="Custom software solutions showcase" className="mt-5 h-auto w-full rounded-2xl object-contain" />
+                ) : null}
 
                 <ul className="mt-5 space-y-2.5">
                   {toBullets(service.details).map((bullet, bulletIdx) => (
@@ -95,14 +143,23 @@ export default function ServicesPage() {
           </div>
         </section>
 
-        <section className="mx-auto mt-16 w-full max-w-7xl px-4 sm:px-6 md:mt-20">
-          <InfoCard
-            title="Service Delivery Approach"
-            description="We start by understanding your workflow, then recommend only the tools and systems that fit your business stage. This keeps projects focused, affordable, and aligned to outcomes."
-            className="rounded-3xl p-8 md:p-10"
-          >
-            <PackageSearch className="mb-5 size-5 text-brand-muted" />
-          </InfoCard>
+        <section className="mx-auto mt-14 w-full max-w-7xl px-4 sm:px-6 md:mt-16">
+          <div className="grid gap-2 rounded-3xl border border-brand-medium bg-gradient-brand-card-deep p-3 sm:grid-cols-2 sm:gap-3 sm:p-4 lg:grid-cols-4">
+            {serviceHighlights.map((item, idx) => (
+              <article
+                key={item.title}
+                className="flex items-start gap-3 rounded-2xl p-3 sm:p-4 lg:rounded-none lg:p-4 lg:not-last:border-r lg:not-last:border-brand-medium"
+              >
+                <div className="inline-flex size-10 shrink-0 items-center justify-center rounded-xl border border-brand-medium bg-brand-frost">
+                  <item.icon className="size-5 text-[var(--brand)]" aria-hidden />
+                </div>
+                <div>
+                  <h3 className="text-sm font-semibold text-zinc-100">{item.title}</h3>
+                  <p className="mt-1 text-sm text-zinc-400">{item.description}</p>
+                </div>
+              </article>
+            ))}
+          </div>
         </section>
 
         <CTASection

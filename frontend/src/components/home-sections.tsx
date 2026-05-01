@@ -1,4 +1,4 @@
-import { Briefcase, ClipboardList, Code2, Cpu, Globe, Headphones, MessageCircle, Palette, ReceiptText, Rocket, Star } from 'lucide-react'
+import { Briefcase, ClipboardList, Code2, Cpu, Globe, Handshake, Headphones, MessageCircle, Palette, ReceiptText, Rocket, ShieldCheck, Star, TimerReset } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { sectionLabelChipClassName } from '@/components/page-sections'
 import { TestimonialsCarousel } from '@/components/testimonials-carousel'
@@ -36,6 +36,14 @@ const testimonials = [
   { quote: 'LogozoDev helped us build our website quickly and professionally.', author: 'Owner, Local Restaurant' },
   { quote: 'Our billing process became much faster after the new POS setup from LogozoDev.', author: 'Manager, Retail Shop' },
   { quote: 'They understood our needs and delivered custom software that actually fits our workflow.', author: 'Founder, Startup Team' },
+]
+
+const whyChooseItems = [
+  { icon: Handshake, title: 'Dedicated Team', description: 'A skilled team focused on your success.' },
+  { icon: Cpu, title: 'Scalable Solutions', description: 'Built to grow with your business.' },
+  { icon: TimerReset, title: 'Transparent Process', description: 'Clear communication at every step.' },
+  { icon: ShieldCheck, title: 'Security First', description: 'We follow best practices to keep your data safe.' },
+  { icon: Briefcase, title: 'Results Driven', description: 'Our solutions are built to deliver real impact.' },
 ]
 
 export function HomeSections() {
@@ -160,6 +168,24 @@ export function HomeSections() {
 
       <section className="mx-auto mt-16 w-full max-w-[90rem] px-4 sm:px-6 md:mt-20">
         <div className="mb-9 sm:mb-11">
+          <div className={`${sectionLabelChipClassName} mx-auto mb-5`}>Why Choose LogozoDev?</div>
+          <h2 className="text-center text-2xl font-semibold tracking-tight text-white sm:text-3xl md:text-4xl lg:text-5xl">
+            More Than Just a Service Provider
+          </h2>
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+            {whyChooseItems.map((item) => (
+              <article key={item.title} className="rounded-2xl border border-brand-medium bg-gradient-brand-card-deep p-5 text-center">
+                <div className="mx-auto inline-flex size-10 items-center justify-center rounded-full border border-brand-medium bg-brand-frost shadow-brand-icon">
+                  <item.icon className="size-5 text-[var(--brand)]" aria-hidden />
+                </div>
+                <h3 className="mt-4 text-xl font-semibold tracking-tight text-zinc-100">{item.title}</h3>
+                <p className="mt-2 text-base leading-relaxed text-zinc-400">{item.description}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-20 mb-9 sm:mt-24 sm:mb-11">
           <div className={`${sectionLabelChipClassName} mx-auto mb-5 -translate-y-1`}>Client Testimonials</div>
           <h2 className="text-center text-2xl font-semibold tracking-tight text-white sm:text-3xl md:text-4xl lg:text-5xl">
             What clients say about LogozoDev
