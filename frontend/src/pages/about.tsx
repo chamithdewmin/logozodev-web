@@ -5,15 +5,9 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen text-white">
       <PageContainer>
-        <PageHero
-          eyebrow="About Us"
-          title="About LogozoDev"
-          description="LogozoDev is a modern IT solutions company helping small and growing businesses succeed in the digital world through websites, POS systems, branding, and custom software tailored to each client."
-          showSpotlight={false}
-          showDarkVeil
-        />
+        <PageHero eyebrow="About Us" title="About LogozoDev" showSpotlight={false} showDarkVeil />
 
-        <section className="mx-auto mt-16 w-full max-w-6xl px-4 sm:px-6 md:mt-20">
+        <section className="mx-auto mt-16 w-full max-w-7xl px-4 sm:px-6 md:mt-20">
           <SectionHeading
             badge="Core Values"
             title="Practical. Personal. Purpose-built."
@@ -41,7 +35,7 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <section className="mx-auto mt-16 w-full max-w-6xl px-4 sm:px-6 md:mt-20">
+        <section className="mx-auto mt-16 w-full max-w-7xl px-4 sm:px-6 md:mt-20">
           <div className="rounded-3xl border panel-glass p-6 sm:p-8 md:p-10">
             <h3 className="text-3xl font-semibold tracking-tight text-white md:text-4xl">Our Story, Mission, and Vision</h3>
             <div className="mt-7 grid gap-5 md:grid-cols-3">
@@ -66,6 +60,7 @@ export default function AboutPage() {
           description="Tell us what you need, from websites and POS systems to branding and custom software, and we will shape the right solution for your business."
           primaryLabel="Contact LogozoDev"
           secondaryLabel="Explore Our Services"
+          secondaryHref="/services"
         />
       </PageContainer>
     </div>

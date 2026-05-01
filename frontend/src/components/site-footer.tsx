@@ -65,7 +65,7 @@ const InternalOrExternalLink = ({ href, children, className }: { href: string; c
 export function SiteFooter() {
   return (
     <footer className="mt-12 w-full border-y border-white/18 bg-black font-sans md:mt-20">
-      <div className="mx-auto w-full max-w-6xl px-4 pb-5 md:px-5">
+      <div className="mx-auto w-full max-w-7xl px-4 pb-5 md:px-5">
         <div className="px-1 pt-10 pb-7 sm:px-2 md:px-4 md:pt-12 md:pb-9">
           <div className="grid gap-8 md:grid-cols-[1.1fr_2fr]">
             <div className="max-w-sm">

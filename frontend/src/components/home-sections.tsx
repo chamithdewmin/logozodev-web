@@ -41,7 +41,7 @@ const testimonials = [
 export function HomeSections() {
   return (
     <>
-      <section className="mx-auto mt-16 w-full max-w-[84rem] px-4 sm:px-6 md:mt-24">
+      <section className="mx-auto mt-16 w-full max-w-[90rem] px-4 sm:px-6 md:mt-24">
         <div className={`${sectionLabelChipClassName} mx-auto mb-11`}>What We Offer</div>
         <motion.div
           className="grid gap-5 sm:grid-cols-2 xl:grid-cols-4"
@@ -91,7 +91,7 @@ export function HomeSections() {
         </div>
       </section>
 
-      <section className="mx-auto mt-12 w-full max-w-[84rem] px-4 sm:px-6 md:mt-16">
+      <section className="mx-auto mt-12 w-full max-w-[90rem] px-4 sm:px-6 md:mt-16">
         <div className="p-3 sm:p-6 md:p-10">
           <div className="mb-8 text-center">
             <p className={`${sectionLabelChipClassName} mx-auto mb-3`}>Process Flow</p>
@@ -158,7 +158,7 @@ export function HomeSections() {
         </div>
       </section>
 
-      <section className="mx-auto mt-16 w-full max-w-[84rem] px-4 sm:px-6 md:mt-20">
+      <section className="mx-auto mt-16 w-full max-w-[90rem] px-4 sm:px-6 md:mt-20">
         <div className="mb-9 sm:mb-11">
           <div className={`${sectionLabelChipClassName} mx-auto mb-5 -translate-y-1`}>Client Testimonials</div>
           <h2 className="text-center text-2xl font-semibold tracking-tight text-white sm:text-3xl md:text-4xl lg:text-5xl">

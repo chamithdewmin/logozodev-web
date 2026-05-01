@@ -7,7 +7,7 @@ export default function HomePage() {
   return (
     <div className="min-h-screen text-white">
       <HeroSection />
-      <div className="mx-auto w-full max-w-[1480px]">
+      <div className="mx-auto w-full max-w-[1580px]">
         <TrustedLogosSection />
         <HomeSections />
         <CTASection

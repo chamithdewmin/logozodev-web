@@ -4,10 +4,10 @@ export default function TermsOfServicePage() {
   return (
     <div className="min-h-screen text-white">
       <PageContainer>
-        <main className="mx-auto mt-10 w-full max-w-4xl px-4 sm:px-6">
+        <main className="mx-auto mt-10 w-full max-w-5xl px-4 sm:px-6">
           <section className="rounded-3xl border panel-glass p-6 sm:p-8 md:p-10">
             <h1 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl md:text-5xl">Terms of Service</h1>
-            <p className="mt-3 text-sm text-zinc-300 sm:text-base">Effective Date: [Add Date]</p>
+            <p className="mt-3 text-sm text-zinc-300 sm:text-base">Effective Date: 1 May, 2026</p>
             <p className="mt-6 text-base leading-relaxed text-zinc-300">
               Welcome to LogozoDev. By using our website and services, you agree to the following terms:
             </p>

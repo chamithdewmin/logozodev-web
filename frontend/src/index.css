@@ -521,6 +521,23 @@
   .shadow-brand-icon {
     box-shadow: 0 0 30px rgb(255 255 255 / 0.07);
   }
+
+  @keyframes section-flash {
+    0% {
+      box-shadow: 0 0 0 0 color-mix(in oklch, var(--brand) 0%, transparent);
+    }
+    35% {
+      box-shadow: 0 0 0 6px color-mix(in oklch, var(--brand) 18%, transparent);
+    }
+    100% {
+      box-shadow: 0 0 0 0 color-mix(in oklch, var(--brand) 0%, transparent);
+    }
+  }
+
+  [data-flash='true'] {
+    animation: section-flash 700ms var(--ease-out-smooth);
+    border-radius: 1.25rem;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

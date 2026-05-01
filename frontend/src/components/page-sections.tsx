@@ -1,16 +1,35 @@
 import type { ReactNode } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
+import { MoveRight } from 'lucide-react'
+import { Link } from 'react-router-dom'
 import DarkVeil from '@/components/ui/dark-veil'
 import { Spotlight } from '@/components/ui/spotlight'
+import { useSiteAlert } from '@/components/site-alert-provider'
 import { cn } from '@/lib/utils'
+import ctaRocketUrl from '@/assets/cta.png'
+
+/** Shown when a CTA has no secondary link (e.g. brief template download). */
+export const CTA_SECONDARY_ALERT_DEFAULT =
+  'We are preparing a downloadable project brief. Use the contact form with your timeline and goals — we will confirm next steps shortly.'
 
 export const sectionLabelChipClassName =
   'flex w-fit items-center justify-center rounded-full border border-brand-subtle bg-brand-frost px-5 py-2 text-sm font-medium text-brand-muted backdrop-blur-sm'
 
+const ctaEyebrowClass =
+  'inline-flex w-fit items-center rounded-full border border-[color-mix(in_srgb,var(--brand)_38%,transparent)] bg-[color-mix(in_srgb,var(--brand)_12%,transparent)] px-3.5 py-1.5 text-xs font-medium tracking-wide text-[var(--brand)]'
+
+function splitTitleAccent(title: string, accentWords = 2) {
+  const words = title.trim().split(/\s+/)
+  if (words.length <= accentWords) return { lead: '', accent: title.trim() }
+  const lead = words.slice(0, words.length - accentWords).join(' ')
+  const accent = words.slice(-accentWords).join(' ')
+  return { lead, accent }
+}
+
 export function PageContainer({ children }: { children: ReactNode }) {
   return (
     <motion.div
-      className="mx-auto w-full max-w-[1280px] overflow-x-clip"
+      className="mx-auto w-full max-w-[1400px] overflow-x-clip"
       initial={{ opacity: 0, y: 18 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.1 }}
@@ -31,30 +50,32 @@ export function PageHero({
 }: {
   eyebrow: string
   title: string
-  description: string
+  description?: string
   children?: ReactNode
   showSpotlight?: boolean
   showDarkVeil?: boolean
 }) {
   return (
-    <section className="mx-auto mt-6 w-full max-w-6xl px-4 sm:px-6 md:mt-10">
-      <div className="relative isolate overflow-visible p-4 sm:p-6 md:p-10 lg:p-12">
+    <section className="mx-auto mt-4 w-full max-w-7xl px-4 sm:px-6 md:mt-6">
+      <div className="relative isolate overflow-visible py-6 px-4 sm:py-7 sm:px-5 md:py-8 md:px-6 lg:py-9 lg:px-7">
         {showDarkVeil ? (
           <div
-            className="pointer-events-none absolute inset-x-0 -top-2 z-[-1] h-[440px] overflow-hidden rounded-t-3xl opacity-55 sm:top-0 md:top-2"
+            className="pointer-events-none absolute inset-x-0 -top-2 z-[-1] h-[260px] overflow-hidden rounded-t-3xl opacity-50 sm:top-0 sm:h-[288px] md:top-1 md:h-[300px]"
             aria-hidden="true"
           >
             <DarkVeil hueShift={120} noiseIntensity={0} scanlineIntensity={0} speed={0.5} scanlineFrequency={0} warpAmount={0} />
           </div>
         ) : null}
-        {showSpotlight ? <Spotlight className="-top-36 left-0 z-10 md:left-48 md:-top-16" fill="#5DD62C" /> : null}
+        {showSpotlight ? <Spotlight className="-top-28 left-0 z-10 sm:-top-32 md:left-48 md:-top-14" fill="#5DD62C" /> : null}
         <div className="relative z-20 text-center">
-          <p className={cn(sectionLabelChipClassName, 'mx-auto mb-5')}>{eyebrow}</p>
+          <p className={cn(sectionLabelChipClassName, 'mx-auto mb-3')}>{eyebrow}</p>
           <h1 className="mx-auto max-w-[20rem] text-3xl font-semibold leading-[1.04] tracking-tight text-white sm:max-w-3xl sm:text-4xl md:text-5xl lg:text-6xl">
             {title}
           </h1>
-          <p className="mx-auto mt-4 max-w-[34ch] text-base leading-relaxed text-white sm:mt-5 sm:max-w-3xl sm:text-lg">{description}</p>
-          {children ? <div className="mt-8 flex justify-center">{children}</div> : null}
+          {description ? (
+            <p className="mx-auto mt-3 max-w-[34ch] text-base leading-relaxed text-white sm:mt-4 sm:max-w-3xl sm:text-lg">{description}</p>
+          ) : null}
+          {children ? <div className={cn(description ? 'mt-6' : 'mt-5', 'flex justify-center')}>{children}</div> : null}
         </div>
       </div>
     </section>
@@ -108,28 +129,88 @@ export function InfoCard({
 }
 
 export function CTASection({
+  eyebrow = "Let's Build Something Great",
   title,
   description,
   primaryLabel,
   secondaryLabel,
+  primaryHref = '/contact-us',
+  secondaryHref,
+  secondaryAlertMessage = CTA_SECONDARY_ALERT_DEFAULT,
 }: {
+  eyebrow?: string
   title: string
   description: string
   primaryLabel: string
   secondaryLabel: string
+  primaryHref?: string
+  secondaryHref?: string
+  secondaryAlertMessage?: string
 }) {
+  const { showAlert } = useSiteAlert()
+  const { lead, accent } = splitTitleAccent(title, 2)
+
   return (
-    <section className="mx-auto mt-16 w-full max-w-6xl px-4 sm:px-6 md:mt-20 animate-page-fade-in">
-      <div className="rounded-3xl border panel-glass p-6 text-center shadow-sm backdrop-blur-md sm:p-8 md:p-12">
-        <h3 className="text-2xl font-semibold tracking-tight text-white sm:text-3xl md:text-4xl">{title}</h3>
-        <p className="mx-auto mt-4 max-w-2xl text-base text-white sm:text-lg">{description}</p>
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-          <button type="button" className="btn-primary-site">
-            {primaryLabel}
-          </button>
-          <button type="button" className="btn-secondary-site">
-            {secondaryLabel}
-          </button>
+    <section className="mx-auto mt-16 w-full max-w-7xl px-4 sm:px-6 md:mt-20 animate-page-fade-in">
+      <div className="relative overflow-visible rounded-3xl border panel-glass shadow-sm backdrop-blur-md">
+        <span
+          className="pointer-events-none absolute right-14 top-1/2 hidden size-[270px] -translate-y-1/2 rounded-full border border-[color-mix(in_srgb,var(--brand)_78%,transparent)] opacity-90 lg:block"
+          aria-hidden
+        />
+        <div className="grid items-center gap-4 p-5 sm:p-6 md:p-7 lg:grid-cols-1 lg:gap-5 lg:px-7 lg:py-14 lg:pr-[21rem]">
+          <div className="text-left lg:pl-5 xl:pl-8">
+            <p className={ctaEyebrowClass}>{eyebrow}</p>
+            <h3 className="mt-2.5 font-heading text-2xl font-semibold leading-snug tracking-tight text-white sm:text-3xl lg:text-[1.85rem] lg:leading-[1.1]">
+              {lead ? (
+                <>
+                  {lead}{' '}
+                  <span className="text-[var(--brand)]">{accent}</span>
+                </>
+              ) : (
+                <span className="text-[var(--brand)]">{accent}</span>
+              )}
+            </h3>
+            <p className="mt-2.5 max-w-[62ch] text-[0.9rem] leading-relaxed text-zinc-300 sm:text-[0.96rem]">{description}</p>
+            <div className="mt-4 flex flex-wrap items-center gap-3">
+              <Link to={primaryHref} className="btn-primary-site btn-primary-site-brand inline-flex min-h-11 items-center gap-2">
+                {primaryLabel}
+                <MoveRight className="size-4" aria-hidden />
+              </Link>
+              {secondaryHref ? (
+                <Link to={secondaryHref} className="btn-secondary-site inline-flex min-h-11 items-center gap-2">
+                  {secondaryLabel}
+                  <MoveRight className="size-4" aria-hidden />
+                </Link>
+              ) : (
+                <button
+                  type="button"
+                  className="btn-secondary-site inline-flex min-h-11 items-center gap-2"
+                  onClick={() =>
+                    showAlert({
+                      variant: 'info',
+                      title: secondaryLabel,
+                      message: secondaryAlertMessage,
+                    })
+                  }
+                >
+                  {secondaryLabel}
+                  <MoveRight className="size-4" aria-hidden />
+                </button>
+              )}
+            </div>
+          </div>
+
+        </div>
+        <div className="pointer-events-none absolute -right-8 -bottom-9 hidden lg:block">
+          <img
+            src={ctaRocketUrl}
+            alt=""
+            aria-hidden
+            width={1200}
+            height={1200}
+            loading="lazy"
+            className="relative z-10 h-auto w-[260px] -translate-x-[35%] -translate-y-[1%] select-none object-contain drop-shadow-[0_0_40px_color-mix(in_srgb,var(--brand)_36%,transparent)] xl:w-[292px]"
+          />
         </div>
       </div>
     </section>

@@ -1,5 +1,7 @@
 import { BriefcaseBusiness, CheckCircle2, MonitorSmartphone, Palette, Rocket, Users } from 'lucide-react'
+import { CareersApplicationForm } from '@/components/careers-application-form'
 import { InfoCard, PageContainer, PageHero, SectionHeading } from '@/components/page-sections'
+import { SmoothHashLink } from '@/components/ui/smooth-hash-link'
 
 const whyWorkWithUs = [
   { icon: BriefcaseBusiness, title: 'Real Project Experience', description: 'Work on websites, POS systems, branding, and software projects for real businesses.' },
@@ -27,24 +29,18 @@ export default function CareersPage() {
   return (
     <div className="min-h-screen text-white">
       <PageContainer>
-        <PageHero
-          eyebrow="Careers at LogozoDev"
-          title="Build the Future of Digital Solutions With Us"
-          description="At LogozoDev, we create modern websites, POS systems, branding, and custom digital solutions for small and growing businesses. We are a growing IT solutions company based in Sri Lanka, working remotely with clients across the country."
-          showSpotlight={false}
-          showDarkVeil
-        >
+        <PageHero eyebrow="Careers at LogozoDev" title="Build the Future of Digital Solutions With Us" showSpotlight={false} showDarkVeil>
           <div className="flex flex-wrap gap-3">
-            <a href="#open-roles" className="btn-primary-site">
+            <SmoothHashLink href="#open-roles" className="btn-primary-site">
               View Open Roles
-            </a>
-            <a href="#application-form" className="btn-secondary-site">
+            </SmoothHashLink>
+            <SmoothHashLink href="#application-form" className="btn-secondary-site">
               Send Your CV
-            </a>
+            </SmoothHashLink>
           </div>
         </PageHero>
 
-        <section className="mx-auto mt-16 w-full max-w-6xl px-4 sm:px-6 md:mt-20">
+        <section className="mx-auto mt-16 w-full max-w-7xl px-4 sm:px-6 md:mt-20">
           <SectionHeading badge="Why Work With Us" title="Learn fast. Build real impact." description="We provide a practical and supportive environment where your work directly helps businesses improve and grow." />
           <div className="grid gap-5 md:grid-cols-2">
             {whyWorkWithUs.map((item) => (
@@ -55,7 +51,7 @@ export default function CareersPage() {
           </div>
         </section>
 
-        <section id="open-roles" className="mx-auto mt-16 w-full max-w-6xl scroll-mt-28 px-4 sm:px-6 md:mt-20">
+        <section id="open-roles" className="mx-auto mt-16 w-full max-w-7xl scroll-mt-28 px-4 sm:px-6 md:mt-20">
           <SectionHeading badge="Current Openings" title="Opportunities at LogozoDev" description="Explore our active roles and apply if your skills and interests match." />
           <div className="grid gap-5 md:grid-cols-3">
             {openings.map((role) => (
@@ -64,15 +60,15 @@ export default function CareersPage() {
                 <h3 className="text-lg font-semibold text-zinc-100">{role.title}</h3>
                 <p className="mt-3 text-base text-zinc-400">{role.skills}</p>
                 <p className="mt-1 text-base text-zinc-500">Type: {role.type}</p>
-                <a href="#application-form" className="btn-primary-site btn-primary-site-sm mt-6 inline-flex">
+                <SmoothHashLink href="#application-form" className="btn-primary-site btn-primary-site-sm mt-6 inline-flex">
                   Apply Now
-                </a>
+                </SmoothHashLink>
               </article>
             ))}
           </div>
         </section>
 
-        <section className="mx-auto mt-16 w-full max-w-6xl px-4 sm:px-6 md:mt-20">
+        <section className="mx-auto mt-16 w-full max-w-7xl px-4 sm:px-6 md:mt-20">
           <SectionHeading badge="Who We Are Looking For" title="People who are eager to grow" description="If these qualities describe you, we would love to hear from you." />
           <div className="rounded-3xl border panel-glass p-8 md:p-10">
             <ul className="grid gap-4 md:grid-cols-2">
@@ -86,37 +82,24 @@ export default function CareersPage() {
           </div>
         </section>
 
-        <section id="application-form" className="mx-auto mt-16 w-full max-w-6xl scroll-mt-28 px-4 sm:px-6 md:mt-20">
+        <section id="application-form" className="mx-auto mt-16 w-full max-w-7xl scroll-mt-28 px-4 sm:px-6 md:mt-20">
           <div className="rounded-3xl border panel-glass p-8 md:p-10">
             <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl md:text-5xl">Application Form</h2>
             <p className="mt-3 text-base text-zinc-500">Share your details and we will review your profile.</p>
-            <form className="mt-7 space-y-4">
-              <div className="grid gap-4 sm:grid-cols-2">
-                <label className="text-base text-zinc-300">Full Name<input type="text" className="form-field-dark mt-2 w-full rounded-xl px-4 py-3 text-base text-zinc-100" placeholder="Your full name" /></label>
-                <label className="text-base text-zinc-300">Email<input type="email" className="form-field-dark mt-2 w-full rounded-xl px-4 py-3 text-base text-zinc-100" placeholder="you@example.com" /></label>
-              </div>
-              <div className="grid gap-4 sm:grid-cols-2">
-                <label className="text-base text-zinc-300">Phone Number<input type="tel" className="form-field-dark mt-2 w-full rounded-xl px-4 py-3 text-base text-zinc-100" placeholder="+94 ..." /></label>
-                <label className="text-base text-zinc-300">Position Applying For<input type="text" className="form-field-dark mt-2 w-full rounded-xl px-4 py-3 text-base text-zinc-100" placeholder="Frontend Developer Intern" /></label>
-              </div>
-              <label className="block text-base text-zinc-300">Portfolio / GitHub / Behance Link<input type="url" className="form-field-dark mt-2 w-full rounded-xl px-4 py-3 text-base text-zinc-100" placeholder="https://..." /></label>
-              <label className="block text-base text-zinc-300">Upload CV<input type="file" className="form-field-dark mt-2 w-full rounded-xl px-4 py-3 text-base text-zinc-100 file:mr-3 file:rounded-md file:border file:border-white/50 file:bg-white file:px-3 file:py-1.5 file:text-base file:font-medium file:text-neutral-950 file:transition-colors hover:file:bg-zinc-100" /></label>
-              <label className="block text-base text-zinc-300">Short Message<textarea rows={4} className="form-field-dark mt-2 w-full resize-none rounded-xl px-4 py-3 text-base text-zinc-100" placeholder="Tell us about yourself and why you want to join LogozoDev." /></label>
-              <button type="submit" className="btn-primary-site">Submit Application</button>
-            </form>
+            <CareersApplicationForm />
           </div>
         </section>
 
-        <section className="mx-auto mt-16 w-full max-w-6xl px-4 sm:px-6 md:mt-20">
+        <section className="mx-auto mt-16 w-full max-w-7xl px-4 sm:px-6 md:mt-20">
           <div className="rounded-3xl border panel-glass p-6 text-center sm:p-8 md:p-10">
             <h3 className="text-3xl font-semibold tracking-tight text-white md:text-4xl">Don’t See a Role That Fits?</h3>
             <p className="mx-auto mt-4 max-w-2xl text-base text-zinc-500">
               We are always open to talented people. Send us your CV and tell us how you can contribute to LogozoDev.
             </p>
             <div className="mt-8 flex justify-center">
-              <a href="#application-form" className="btn-primary-site">
+              <SmoothHashLink href="#application-form" className="btn-primary-site">
                 Send Your CV
-              </a>
+              </SmoothHashLink>
             </div>
           </div>
         </section>

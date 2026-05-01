@@ -14,7 +14,7 @@ const trustedLogos = [
 
 export function TrustedLogosSection() {
   return (
-    <section className="mx-auto mt-8 w-full max-w-[84rem] px-4 sm:mt-10 sm:px-6 md:mt-20">
+    <section className="mx-auto mt-8 w-full max-w-[90rem] px-4 sm:mt-10 sm:px-6 md:mt-20">
       <p className={`${sectionLabelChipClassName} mx-auto`}>Trusted by modern businesses</p>
       <h3 className="mt-4 text-center text-3xl font-semibold tracking-tight text-zinc-100 sm:text-4xl md:text-5xl">
         Brands We&apos;ve Worked With

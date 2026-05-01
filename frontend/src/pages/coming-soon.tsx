@@ -20,7 +20,7 @@ export default function ComingSoonPage() {
   return (
     <div className="min-h-screen text-white">
       <PageContainer>
-        <main className="mx-auto mt-10 w-full max-w-5xl px-4 sm:px-6">
+        <main className="mx-auto mt-10 w-full max-w-6xl px-4 sm:px-6">
           <section className="rounded-3xl border panel-glass p-6 sm:p-8 md:p-10">
             <p className="inline-flex w-fit items-center rounded-full border border-brand-subtle bg-brand-frost px-3.5 py-1 text-sm text-brand-muted sm:text-base">Coming Soon</p>
             <h1 className="mt-5 text-3xl font-semibold tracking-tight text-white sm:text-4xl md:text-5xl">{itemName} is coming soon</h1>

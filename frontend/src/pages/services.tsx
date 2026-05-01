@@ -1,4 +1,5 @@
-import { Bot, Brush, MonitorSmartphone, PackageSearch, ReceiptText, Wrench } from 'lucide-react'
+import { ArrowRight, Bot, Brush, CheckCircle2, MonitorSmartphone, PackageSearch, ReceiptText, Wrench } from 'lucide-react'
+import { Link } from 'react-router-dom'
 import { CTASection, InfoCard, PageContainer, PageHero, SectionHeading } from '@/components/page-sections'
 
 const services = [
@@ -34,41 +35,67 @@ const services = [
   },
 ]
 
+function toBullets(details: string): string[] {
+  return details
+    .replace(/\.$/, '')
+    .split(/,\s*/)
+    .map((s) => s.replace(/^and\s+/i, '').trim())
+    .map((s) => (s ? s[0].toUpperCase() + s.slice(1) : s))
+    .filter(Boolean)
+}
+
 export default function ServicesPage() {
   return (
     <div className="min-h-screen text-white">
       <PageContainer>
-        <PageHero
-          eyebrow="Services"
-          title="Practical IT services built for real business growth."
-          description="LogozoDev delivers complete digital solutions for small and growing businesses, from websites and POS systems to branding, software, and ongoing IT guidance."
-          showSpotlight={false}
-          showDarkVeil
-        />
+        <PageHero eyebrow="Services" title="Practical IT services built for real business growth." showSpotlight={false} showDarkVeil />
 
-        <section className="mx-auto mt-16 w-full max-w-6xl px-4 sm:px-6 md:mt-20">
+        <section className="mx-auto mt-16 w-full max-w-7xl px-4 sm:px-6 md:mt-20">
           <SectionHeading
             badge="What We Offer"
             title="Clear solutions. Measurable value."
             description="Each service is designed to solve real operational problems and help your business grow faster with the right technology."
           />
           <div className="grid gap-5 md:grid-cols-2">
-            {services.map((service) => (
-              <InfoCard
+            {services.map((service, idx) => (
+              <article
                 key={service.title}
-                title={service.title}
-                description={`${service.details} ${service.value}`}
-                className="group min-h-[238px] rounded-3xl border border-brand-medium bg-gradient-brand-card-deep p-7 transition duration-300 hover:-translate-y-1 hover:border-brand-strong hover:shadow-[0_18px_55px_rgba(0,0,0,0.45)]"
+                className="group relative overflow-hidden rounded-3xl border border-brand-medium bg-gradient-brand-card-deep p-6 transition duration-300 hover:-translate-y-1 hover:border-brand-strong hover:shadow-[0_18px_55px_rgba(0,0,0,0.45)] sm:p-7 md:p-8 [&:last-child]:md:col-span-2"
               >
-                <div className="shadow-brand-icon mb-6 inline-flex size-12 items-center justify-center rounded-2xl border border-brand-medium bg-brand-frost transition duration-300 group-hover:scale-105 group-hover:border-brand-strong group-hover:bg-white/10">
-                  <service.icon className="size-6 text-brand-muted" />
+                <div className="flex items-start justify-between gap-4">
+                  <div className="shadow-brand-icon inline-flex size-12 items-center justify-center rounded-2xl border border-brand-medium bg-brand-frost transition duration-300 group-hover:scale-105 group-hover:border-brand-strong group-hover:bg-white/10">
+                    <service.icon className="size-6 text-brand-muted" />
+                  </div>
+                  <span className="font-mono text-base font-semibold tabular-nums text-[var(--brand)] sm:text-lg">
+                    {String(idx + 1).padStart(2, '0')}
+                  </span>
                 </div>
-              </InfoCard>
+
+                <h3 className="mt-6 text-xl font-semibold tracking-tight text-zinc-100 sm:text-2xl">{service.title}</h3>
+                <p className="mt-3 text-base leading-relaxed text-zinc-400">{service.value}</p>
+
+                <ul className="mt-5 space-y-2.5">
+                  {toBullets(service.details).map((bullet, bulletIdx) => (
+                    <li key={`${service.title}-${bulletIdx}`} className="flex items-start gap-2.5 text-[0.95rem] text-zinc-300">
+                      <CheckCircle2 className="mt-0.5 size-[1.125rem] shrink-0 text-[var(--brand)]" aria-hidden />
+                      <span>{bullet}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <Link
+                  to="/contact-us"
+                  className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-zinc-100 transition-colors hover:text-[var(--brand)]"
+                >
+                  Learn More
+                  <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden />
+                </Link>
+              </article>
             ))}
           </div>
         </section>
 
-        <section className="mx-auto mt-16 w-full max-w-6xl px-4 sm:px-6 md:mt-20">
+        <section className="mx-auto mt-16 w-full max-w-7xl px-4 sm:px-6 md:mt-20">
           <InfoCard
             title="Service Delivery Approach"
             description="We start by understanding your workflow, then recommend only the tools and systems that fit your business stage. This keeps projects focused, affordable, and aligned to outcomes."
@@ -83,6 +110,7 @@ export default function ServicesPage() {
           description="Share your goals and we will recommend the best combination of website, POS, branding, software, and support services."
           primaryLabel="Contact Us"
           secondaryLabel="Get Free Consultation"
+          secondaryHref="/contact-us"
         />
       </PageContainer>
     </div>

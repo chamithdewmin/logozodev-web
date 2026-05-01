@@ -4,6 +4,7 @@ import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { Navbar } from '@/components/navbar'
 import { SiteFooter } from '@/components/site-footer'
 import { Spotlight } from '@/components/ui/spotlight'
+import { smoothScrollToId } from '@/lib/smooth-scroll'
 import HomePage from '@/pages/home'
 import ServicesPage from '@/pages/services'
 import AboutPage from '@/pages/about'
@@ -20,8 +21,15 @@ function App() {
   const reduceMotion = useReducedMotion()
   const overlayNavbar = useMemo(() => location.pathname === '/', [location.pathname])
   useEffect(() => {
+    if (location.hash) {
+      const id = location.hash.slice(1)
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => smoothScrollToId(id))
+      })
+      return
+    }
     window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
-  }, [location.pathname])
+  }, [location.pathname, location.hash])
 
   const showInnerGlow = useMemo(() => {
     const pathWithoutTrailingSlash = location.pathname.replace(/\/+$/, '') || '/'

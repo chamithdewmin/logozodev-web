@@ -42,7 +42,7 @@ export function Navbar({ overlay = false }: { overlay?: boolean }) {
         hidden ? '-translate-y-[130%]' : 'translate-y-0'
       )}
     >
-      <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6">
         <div className="flex items-center justify-between rounded-full border nav-shell px-4 py-3 backdrop-blur sm:px-6 sm:py-3.5">
           <Link to="/" className="flex items-center">
             <img src={logoImage} alt="LogozoDev" width={1200} height={220} className="h-7 w-auto sm:h-8 md:h-9" />
