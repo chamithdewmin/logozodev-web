@@ -1,8 +1,7 @@
-import { Briefcase, ClipboardList, Code2, Cpu, Globe, Handshake, Headphones, MessageCircle, Palette, ReceiptText, Rocket, ShieldCheck, Star, TimerReset } from 'lucide-react'
+import { Briefcase, ClipboardList, Code2, Cpu, Globe, Handshake, MessageCircle, Palette, ReceiptText, Rocket, ShieldCheck, TimerReset } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { sectionLabelChipClassName } from '@/components/page-sections'
 import { TestimonialsCarousel } from '@/components/testimonials-carousel'
-import { AnimatedCounter } from '@/components/ui/animated-counter'
 import { TiltCard } from '@/components/ui/tilt-card'
 
 const serviceCards = [
@@ -25,12 +24,6 @@ const processCurveLayout = [
   { left: '60%', top: '58%' },
   { left: '86%', top: '34%' },
 ]
-
-const highlightStats = [
-  { icon: Briefcase, value: 20, suffix: '+', label: 'projects' },
-  { icon: Star, value: 98, suffix: '%', label: 'Client Satisfaction' },
-  { icon: Headphones, value: 24, suffix: '/7', label: 'Support Window' },
-] as const
 
 const testimonials = [
   { quote: 'LogozoDev helped us build our website quickly and professionally.', author: 'Owner, Local Restaurant' },
@@ -81,22 +74,6 @@ export function HomeSections() {
             </motion.article>
           ))}
         </motion.div>
-        <div className="mt-7 grid gap-3 sm:grid-cols-3">
-          {highlightStats.map((stat) => (
-            <div
-              key={stat.label}
-              className="flex items-center gap-4 rounded-xl border border-brand-subtle bg-brand-frost p-4 sm:gap-5 sm:p-5"
-            >
-              <stat.icon className="size-9 shrink-0 text-[#5DD62C] sm:size-10" aria-hidden />
-              <div className="min-w-0 text-left">
-                <p className="text-3xl font-semibold tabular-nums text-zinc-100">
-                  <AnimatedCounter value={stat.value} suffix={stat.suffix} />
-                </p>
-                <p className="mt-1 text-sm text-zinc-400">{stat.label}</p>
-              </div>
-            </div>
-          ))}
-        </div>
       </section>
 
       <section className="mx-auto mt-12 w-full max-w-[90rem] px-4 sm:px-6 md:mt-16">

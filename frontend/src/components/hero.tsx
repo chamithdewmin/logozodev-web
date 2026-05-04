@@ -19,7 +19,7 @@ export function HeroSection() {
       <Spotlight className="-top-36 left-0 md:left-48 md:-top-16" fill="#5DD62C" />
       <div className="relative z-10 flex w-full flex-col items-center md:min-h-[calc(100vh-7rem)] md:flex-row md:items-stretch">
         <div className="mt-8 flex w-full flex-[1.1] flex-col items-center justify-center gap-5 py-6 text-center sm:mt-10 sm:gap-6 sm:py-8 md:mt-0 md:items-start md:gap-5 md:p-14 md:py-4 md:text-left">
-          <p className={`${sectionLabelChipClassName} animate-hero-enter`}>Spline 3D Integration</p>
+          <p className={`${sectionLabelChipClassName} animate-hero-enter`}>Smart Solutions For The Future</p>
           <h1 className="animate-hero-enter animate-hero-heading max-w-[20rem] text-[1.95rem] font-semibold leading-[1.04] tracking-tight text-white sm:max-w-[30rem] sm:text-4xl md:max-w-2xl md:text-6xl lg:text-7xl">
             <span className="block whitespace-nowrap">
               {heroWords.map((word, idx) => (
