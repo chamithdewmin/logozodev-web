@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import { FadeUp, StaggerParent } from '@/components/motion/reveal'
 import { Spotlight } from '@/components/ui/spotlight'
 import { useSiteAlert } from '@/components/site-alert-provider'
-import { fadeUpVariants, transitionReveal, viewportOnce } from '@/lib/motion-presets'
+import { fadeUpVariants, transitionSection, viewportOnce } from '@/lib/motion-presets'
 import { cn } from '@/lib/utils'
 import ctaRocketUrl from '@/assets/cta.png'
 
@@ -63,14 +63,14 @@ export function PageHero({
           <motion.p
             className={cn(sectionLabelChipClassName, 'mx-auto mb-3')}
             variants={item}
-            transition={reduceMotion ? { duration: 0 } : transitionReveal}
+            transition={reduceMotion ? { duration: 0 } : transitionSection}
           >
             {eyebrow}
           </motion.p>
           <motion.h1
             className="mx-auto max-w-[20rem] text-3xl font-semibold leading-[1.04] tracking-tight text-white sm:max-w-3xl sm:text-4xl md:text-5xl lg:text-6xl"
             variants={item}
-            transition={reduceMotion ? { duration: 0 } : transitionReveal}
+            transition={reduceMotion ? { duration: 0 } : transitionSection}
           >
             {title}
           </motion.h1>
@@ -78,7 +78,7 @@ export function PageHero({
             <motion.p
               className="mx-auto mt-3 max-w-[34ch] text-base leading-relaxed text-white sm:mt-4 sm:max-w-3xl sm:text-lg"
               variants={item}
-              transition={reduceMotion ? { duration: 0 } : transitionReveal}
+              transition={reduceMotion ? { duration: 0 } : transitionSection}
             >
               {description}
             </motion.p>
@@ -87,7 +87,7 @@ export function PageHero({
             <motion.div
               className={cn(description ? 'mt-6' : 'mt-5', 'flex justify-center')}
               variants={item}
-              transition={reduceMotion ? { duration: 0 } : transitionReveal}
+              transition={reduceMotion ? { duration: 0 } : transitionSection}
             >
               {children}
             </motion.div>
@@ -131,8 +131,8 @@ export function InfoCard({
 
   return (
     <motion.div
-      whileHover={reduceMotion ? {} : { scale: 1.025 }}
-      transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+      whileHover={reduceMotion ? {} : { scale: 1.02 }}
+      transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
     >
       <div className={cn('rounded-2xl border border-brand-subtle bg-gradient-brand-card p-6 backdrop-blur-[2px]', className)}>
         {children}
@@ -174,7 +174,7 @@ export function CTASection({
       whileInView="show"
       viewport={viewportOnce}
       variants={v}
-      transition={reduceMotion ? { duration: 0 } : transitionReveal}
+      transition={reduceMotion ? { duration: 0 } : transitionSection}
     >
       <div className="relative overflow-visible rounded-3xl border panel-glass shadow-sm backdrop-blur-md">
         <span

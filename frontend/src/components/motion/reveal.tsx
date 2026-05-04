@@ -6,7 +6,8 @@ import {
   fadeUpVariants,
   slideFromXVariants,
   staggerContainerVariants,
-  transitionReveal,
+  staggerHeroColumnVariants,
+  transitionSection,
   viewportOnce,
 } from '@/lib/motion-presets'
 
@@ -27,7 +28,7 @@ export function FadeUp({ children, className, delay = 0 }: FadeUpProps) {
       whileInView="show"
       viewport={viewportOnce}
       variants={v}
-      transition={reduceMotion ? { duration: 0 } : { ...transitionReveal, delay }}
+      transition={reduceMotion ? { duration: 0 } : { ...transitionSection, delay }}
     >
       {children}
     </motion.div>
@@ -45,7 +46,7 @@ export function FadeIn({ children, className, delay = 0 }: FadeUpProps) {
       whileInView="show"
       viewport={viewportOnce}
       variants={v}
-      transition={reduceMotion ? { duration: 0 } : { ...transitionReveal, delay }}
+      transition={reduceMotion ? { duration: 0 } : { ...transitionSection, delay }}
     >
       {children}
     </motion.div>
@@ -55,11 +56,13 @@ export function FadeIn({ children, className, delay = 0 }: FadeUpProps) {
 type StaggerParentProps = {
   children: ReactNode
   className?: string
+  /** Tighter timing for home hero column */
+  preset?: 'default' | 'hero'
 }
 
-export function StaggerParent({ children, className }: StaggerParentProps) {
+export function StaggerParent({ children, className, preset = 'default' }: StaggerParentProps) {
   const reduceMotion = useReducedMotion()
-  const v = staggerContainerVariants(!!reduceMotion)
+  const v = preset === 'hero' ? staggerHeroColumnVariants(!!reduceMotion) : staggerContainerVariants(!!reduceMotion)
 
   return (
     <motion.div className={cn(className)} initial="hidden" whileInView="show" viewport={viewportOnce} variants={v}>
@@ -83,7 +86,7 @@ export function StaggerItem({ children, className, style }: StaggerItemProps) {
       className={cn(className)}
       style={style}
       variants={v}
-      transition={reduceMotion ? { duration: 0 } : transitionReveal}
+      transition={reduceMotion ? { duration: 0 } : transitionSection}
     >
       {children}
     </motion.div>
@@ -107,7 +110,7 @@ export function SlideInX({ children, className, direction }: SlideInXProps) {
       whileInView="show"
       viewport={viewportOnce}
       variants={v}
-      transition={reduceMotion ? { duration: 0 } : transitionReveal}
+      transition={reduceMotion ? { duration: 0 } : transitionSection}
     >
       {children}
     </motion.div>

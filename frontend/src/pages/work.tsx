@@ -217,7 +217,7 @@ export default function WorkPage() {
                     </div>
                     <div>
                       <p className="text-3xl font-semibold leading-none text-[var(--brand)] tabular-nums">
-                        {parsed ? <AnimatedCounter value={parsed.value} suffix={parsed.suffix} durationMs={900} /> : stat.value}
+                        {parsed ? <AnimatedCounter value={parsed.value} suffix={parsed.suffix} durationMs={700} /> : stat.value}
                       </p>
                       <p className="mt-1 text-sm text-zinc-300">{stat.label}</p>
                     </div>

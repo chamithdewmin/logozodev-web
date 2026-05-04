@@ -111,7 +111,7 @@ export default function ServicesPage() {
                 <StaggerItem key={service.title} className={idx === services.length - 1 ? 'md:col-span-2' : undefined}>
                   <article className="group relative h-full overflow-hidden rounded-3xl border border-brand-medium bg-gradient-brand-card-deep p-6 transition duration-300 hover:-translate-y-1 hover:border-brand-strong hover:shadow-[0_18px_55px_rgba(0,0,0,0.45)] sm:p-7 md:p-8">
                     <div className="flex items-start justify-between gap-4">
-                      <div className="shadow-brand-icon inline-flex size-12 items-center justify-center rounded-2xl border border-brand-medium bg-brand-frost transition duration-300 group-hover:scale-[1.03] group-hover:border-brand-strong group-hover:bg-white/10">
+                      <div className="shadow-brand-icon inline-flex size-12 items-center justify-center rounded-2xl border border-brand-medium bg-brand-frost transition duration-200 group-hover:scale-[1.02] group-hover:border-brand-strong group-hover:bg-white/10">
                         <service.icon className="size-6 text-brand-muted" />
                       </div>
                       <span className="font-mono text-base font-semibold tabular-nums text-[var(--brand)] sm:text-lg">

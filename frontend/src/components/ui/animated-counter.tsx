@@ -5,7 +5,7 @@ import { useRef } from 'react'
 export function AnimatedCounter({
   value,
   suffix = '',
-  durationMs = 950,
+  durationMs = 700,
 }: {
   value: number
   suffix?: string

@@ -22,7 +22,7 @@ export function TrustedLogosSection() {
           Brands We&apos;ve Worked With
         </h3>
       </FadeUp>
-      <FadeUp className="mt-10 sm:mt-12" delay={0.08}>
+      <FadeUp className="mt-10 sm:mt-12" delay={0.04}>
         <div className="overflow-hidden rounded-xl bg-black pt-2 sm:pt-3">
           <div className="text-zinc-300">
             <div className="scale-75 sm:scale-100">

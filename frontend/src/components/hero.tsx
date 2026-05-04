@@ -7,7 +7,14 @@ import { AnimatedCounter } from '@/components/ui/animated-counter'
 import { MagneticButton } from '@/components/ui/magnetic-button'
 import { Spotlight } from '@/components/ui/spotlight'
 import { SplineScene } from '@/components/ui/splite'
-import { fadeUpVariants, staggerContainerVariants, transitionReveal, viewportOnce } from '@/lib/motion-presets'
+import {
+  fadeUpHeroVariants,
+  staggerHeroButtonsVariants,
+  staggerHeroWordsVariants,
+  transitionHero,
+  transitionSection,
+  viewportOnce,
+} from '@/lib/motion-presets'
 import { parseDisplayStat } from '@/lib/parse-display-stat'
 
 export function HeroSection() {
@@ -19,43 +26,50 @@ export function HeroSection() {
     { icon: Headphones, value: '24/7', label: 'Support Available' },
   ]
   const reduceMotion = useReducedMotion()
-  const item = fadeUpVariants(!!reduceMotion)
-  const wordContainer = staggerContainerVariants(!!reduceMotion)
-  const wordItem = fadeUpVariants(!!reduceMotion)
-  const btnRow = staggerContainerVariants(!!reduceMotion)
+  const itemHero = fadeUpHeroVariants(!!reduceMotion)
+  const wordContainer = staggerHeroWordsVariants(!!reduceMotion)
+  const wordItem = fadeUpHeroVariants(!!reduceMotion)
+  const btnRow = staggerHeroButtonsVariants(!!reduceMotion)
 
   return (
     <section className="relative w-full overflow-hidden px-4 pt-20 sm:px-6 sm:pt-24 md:min-h-screen md:px-10 md:pt-28 md:pb-36">
       <Spotlight className="-top-36 left-0 md:left-48 md:-top-16" fill="#5DD62C" />
       <div className="relative z-10 flex w-full flex-col items-center md:min-h-[calc(100vh-7rem)] md:flex-row md:items-stretch">
         <div className="mt-8 flex w-full flex-[1.1] flex-col items-center justify-center gap-5 py-6 text-center sm:mt-10 sm:gap-6 sm:py-8 md:mt-0 md:items-start md:gap-5 md:p-14 md:py-4 md:text-left">
-          <StaggerParent className="flex w-full flex-col items-center gap-5 md:items-start">
-            <motion.p className={sectionLabelChipClassName} variants={item} transition={reduceMotion ? { duration: 0 } : transitionReveal}>
+          <StaggerParent
+            preset="hero"
+            className="flex w-full flex-col items-center gap-5 will-change-[transform,opacity] md:items-start md:will-change-auto"
+          >
+            <motion.p
+              className={sectionLabelChipClassName}
+              variants={itemHero}
+              transition={reduceMotion ? { duration: 0 } : transitionHero}
+            >
               Smart Solutions For The Future
             </motion.p>
 
             <motion.h1
               className="max-w-[20rem] text-[1.95rem] font-semibold leading-[1.04] tracking-tight text-white sm:max-w-[30rem] sm:text-4xl md:max-w-2xl md:text-6xl lg:text-7xl"
               variants={wordContainer}
-              transition={reduceMotion ? { duration: 0 } : transitionReveal}
+              transition={reduceMotion ? { duration: 0 } : transitionHero}
             >
               <span className="block whitespace-nowrap">
                 {heroWords.map((word) => (
-                  <motion.span key={word} className="mr-3 inline-block whitespace-nowrap" variants={wordItem} transition={transitionReveal}>
+                  <motion.span key={word} className="mr-3 inline-block whitespace-nowrap" variants={wordItem} transition={transitionHero}>
                     {word}
                   </motion.span>
                 ))}
               </span>
               <span className="block whitespace-nowrap">
-                <motion.span className="mr-2 inline-block whitespace-nowrap" variants={wordItem} transition={transitionReveal}>
+                <motion.span className="mr-2 inline-block whitespace-nowrap" variants={wordItem} transition={transitionHero}>
                   for
                 </motion.span>
-                <motion.span className="inline-block whitespace-nowrap text-[#5DD62C]" variants={wordItem} transition={transitionReveal}>
+                <motion.span className="inline-block whitespace-nowrap text-[#5DD62C]" variants={wordItem} transition={transitionHero}>
                   Growing
                 </motion.span>
               </span>
               <span className="block whitespace-nowrap">
-                <motion.span className="inline-block whitespace-nowrap" variants={wordItem} transition={transitionReveal}>
+                <motion.span className="inline-block whitespace-nowrap" variants={wordItem} transition={transitionHero}>
                   Businesses
                 </motion.span>
               </span>
@@ -63,8 +77,8 @@ export function HeroSection() {
 
             <motion.p
               className="max-w-[34ch] text-base leading-relaxed text-zinc-400 sm:max-w-2xl sm:text-lg"
-              variants={item}
-              transition={reduceMotion ? { duration: 0 } : { ...transitionReveal, delay: 0.14 }}
+              variants={itemHero}
+              transition={reduceMotion ? { duration: 0 } : { ...transitionHero, delay: 0.04 }}
             >
               We create modern websites, powerful POS systems, and tailored digital solutions that help businesses enhance their operations,
               strengthen their brand presence, and grow faster with confidence.
@@ -74,7 +88,7 @@ export function HeroSection() {
               className="mt-1 flex w-full flex-col items-center gap-5 sm:flex-row sm:flex-wrap sm:justify-center md:mt-2 md:justify-start"
               variants={btnRow}
             >
-              <motion.div variants={item} transition={transitionReveal}>
+              <motion.div variants={itemHero} transition={transitionHero}>
                 <MagneticButton>
                   <Link to="/contact-us" className="btn-primary-site inline-flex min-h-11 items-center gap-2">
                     Start Building
@@ -82,7 +96,7 @@ export function HeroSection() {
                   </Link>
                 </MagneticButton>
               </motion.div>
-              <motion.div variants={item} transition={transitionReveal}>
+              <motion.div variants={itemHero} transition={transitionHero}>
                 <MagneticButton>
                   <Link to="/work" className="btn-secondary-site inline-flex min-h-11 items-center">
                     View our Work
@@ -102,8 +116,8 @@ export function HeroSection() {
         initial="hidden"
         whileInView="show"
         viewport={viewportOnce}
-        variants={item}
-        transition={reduceMotion ? { duration: 0 } : { ...transitionReveal, delay: 0.08 }}
+        variants={itemHero}
+        transition={reduceMotion ? { duration: 0 } : { ...transitionSection, delay: 0.02 }}
       >
         <div className="ml-auto grid w-full max-w-6xl gap-1 rounded-full border border-white/15 bg-black/55 p-3 backdrop-blur-md lg:grid-cols-4">
           {heroStats.map((stat) => {
@@ -115,7 +129,7 @@ export function HeroSection() {
                 </div>
                 <div>
                   <p className="text-3xl font-semibold leading-none text-zinc-100 tabular-nums">
-                    {parsed ? <AnimatedCounter value={parsed.value} suffix={parsed.suffix} durationMs={900} /> : stat.value}
+                    {parsed ? <AnimatedCounter value={parsed.value} suffix={parsed.suffix} durationMs={700} /> : stat.value}
                   </p>
                   <p className="mt-1 text-sm text-zinc-300">{stat.label}</p>
                 </div>

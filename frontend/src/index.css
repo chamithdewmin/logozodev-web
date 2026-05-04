@@ -170,7 +170,7 @@
     color: #0a0a0a;
     border: 1px solid rgb(255 255 255 / 0.95);
     transition: color 150ms cubic-bezier(0.4, 0, 0.2, 1), background-color 150ms cubic-bezier(0.4, 0, 0.2, 1),
-      border-color 150ms cubic-bezier(0.4, 0, 0.2, 1), transform 200ms cubic-bezier(0.16, 1, 0.3, 1);
+      border-color 150ms cubic-bezier(0.4, 0, 0.2, 1), transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .btn-primary-site:hover {
@@ -201,7 +201,7 @@
     background-color: rgb(255 255 255 / 0.04);
     color: rgb(255 255 255 / 0.94);
     transition: color 150ms cubic-bezier(0.4, 0, 0.2, 1), background-color 150ms cubic-bezier(0.4, 0, 0.2, 1),
-      border-color 150ms cubic-bezier(0.4, 0, 0.2, 1), transform 200ms cubic-bezier(0.16, 1, 0.3, 1);
+      border-color 150ms cubic-bezier(0.4, 0, 0.2, 1), transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .btn-secondary-site:hover {

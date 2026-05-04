@@ -100,7 +100,7 @@ export function HomeSections() {
                 className="group absolute -translate-x-1/2 -translate-y-1/2 transition-transform duration-300 ease-out hover:-translate-y-[56%]"
                 style={{ left: processCurveLayout[idx].left, top: processCurveLayout[idx].top }}
               >
-                <div className="shadow-brand-node shadow-brand-node-hover mx-auto flex size-12 items-center justify-center rounded-full border border-brand-medium bg-black transition duration-300 group-hover:scale-105">
+                <div className="shadow-brand-node shadow-brand-node-hover mx-auto flex size-12 items-center justify-center rounded-full border border-brand-medium bg-black transition duration-200 group-hover:scale-[1.02]">
                   <step.icon className="size-5 text-brand-muted" />
                 </div>
                 <div className="shadow-brand-tooltip mt-3 w-52 rounded-xl border border-brand-subtle bg-black/65 p-3 text-center backdrop-blur-sm transition duration-300 group-hover:border-brand-medium group-hover:bg-black/85">
@@ -115,7 +115,7 @@ export function HomeSections() {
             {processSteps.map((step) => (
               <StaggerItem key={`${step.title}-mobile`}>
                 <article className="shadow-brand-card-hover rounded-2xl border border-brand-medium bg-black/40 p-4 transition duration-300 hover:-translate-y-1 hover:border-brand-strong hover:bg-black/60">
-                  <div className="mb-3 flex size-9 items-center justify-center rounded-full border border-brand-strong bg-brand-frost transition duration-300 hover:scale-105 hover:border-brand-medium">
+                  <div className="mb-3 flex size-9 items-center justify-center rounded-full border border-brand-strong bg-brand-frost transition duration-200 hover:scale-[1.02] hover:border-brand-medium">
                     <step.icon className="size-4.5 text-brand-muted" />
                   </div>
                   <h4 className="text-base font-semibold text-zinc-100">{step.title}</h4>
