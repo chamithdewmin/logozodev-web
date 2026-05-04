@@ -38,15 +38,15 @@ export function SplineScene({ scene, className }: SplineSceneProps) {
       {canRenderScene ? (
         <Suspense
           fallback={
-            <div className="flex h-full w-full items-center justify-center">
-              <div className="skeleton-shimmer h-[78%] w-[88%] rounded-2xl border border-brand-subtle" />
-            </div>
+            <div className="h-full w-full bg-black" aria-hidden />
           }
         >
-          <Spline scene={scene} className="h-full w-full" />
+          <Spline scene={scene} className="h-full w-full">
+            <div className="h-full w-full bg-black" aria-hidden />
+          </Spline>
         </Suspense>
       ) : (
-        <div className="skeleton-shimmer h-full w-full rounded-2xl border border-brand-subtle" />
+        <div className="h-full w-full bg-black" aria-hidden />
       )}
     </div>
   )
