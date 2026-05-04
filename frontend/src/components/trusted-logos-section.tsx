@@ -1,5 +1,6 @@
 import { SiNextdotjs, SiReact, SiShopify, SiStripe, SiTailwindcss, SiTypescript } from 'react-icons/si'
 import type { CSSProperties } from 'react'
+import { FadeUp } from '@/components/motion/reveal'
 import LogoLoop from '@/components/logo-loop'
 import { sectionLabelChipClassName } from '@/components/page-sections'
 
@@ -15,11 +16,13 @@ const trustedLogos = [
 export function TrustedLogosSection() {
   return (
     <section className="mx-auto mt-8 w-full max-w-[90rem] px-4 sm:mt-10 sm:px-6 md:mt-20">
-      <p className={`${sectionLabelChipClassName} mx-auto`}>Trusted by modern businesses</p>
-      <h3 className="mt-4 text-center text-3xl font-semibold tracking-tight text-zinc-100 sm:text-4xl md:text-5xl">
-        Brands We&apos;ve Worked With
-      </h3>
-      <div className="mt-10 sm:mt-12">
+      <FadeUp>
+        <p className={`${sectionLabelChipClassName} mx-auto`}>Trusted by modern businesses</p>
+        <h3 className="mt-4 text-center text-3xl font-semibold tracking-tight text-zinc-100 sm:text-4xl md:text-5xl">
+          Brands We&apos;ve Worked With
+        </h3>
+      </FadeUp>
+      <FadeUp className="mt-10 sm:mt-12" delay={0.08}>
         <div className="overflow-hidden rounded-xl bg-black pt-2 sm:pt-3">
           <div className="text-zinc-300">
             <div className="scale-75 sm:scale-100">
@@ -39,7 +42,7 @@ export function TrustedLogosSection() {
             </div>
           </div>
         </div>
-      </div>
+      </FadeUp>
     </section>
   )
 }

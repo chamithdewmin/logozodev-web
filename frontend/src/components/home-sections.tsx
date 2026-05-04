@@ -1,5 +1,5 @@
 import { Briefcase, ClipboardList, Code2, Cpu, Globe, Handshake, MessageCircle, Palette, ReceiptText, Rocket, ShieldCheck, TimerReset } from 'lucide-react'
-import { motion } from 'framer-motion'
+import { FadeUp, StaggerItem, StaggerParent } from '@/components/motion/reveal'
 import { sectionLabelChipClassName } from '@/components/page-sections'
 import { TestimonialsCarousel } from '@/components/testimonials-carousel'
 import { TiltCard } from '@/components/ui/tilt-card'
@@ -43,47 +43,32 @@ export function HomeSections() {
   return (
     <>
       <section className="mx-auto mt-16 w-full max-w-[90rem] px-4 sm:px-6 md:mt-24">
-        <div className={`${sectionLabelChipClassName} mx-auto mb-11`}>What We Offer</div>
-        <motion.div
-          className="grid gap-5 sm:grid-cols-2 xl:grid-cols-4"
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={{
-            hidden: {},
-            show: {
-              transition: { staggerChildren: 0.12 },
-            },
-          }}
-        >
+        <FadeUp className="mb-11">
+          <p className={`${sectionLabelChipClassName} mx-auto`}>What We Offer</p>
+        </FadeUp>
+        <StaggerParent className="grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
           {serviceCards.map((card) => (
-            <motion.article
-              key={card.title}
-              variants={{
-                hidden: { opacity: 0, y: 26 },
-                show: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-              }}
-            >
-              <TiltCard className="rounded-2xl border border-brand-subtle bg-gradient-brand-card p-6 hover:border-brand-medium shadow-brand-soft">
+            <StaggerItem key={card.title}>
+              <TiltCard className="rounded-2xl border border-brand-subtle bg-gradient-brand-card p-6 shadow-brand-soft hover:border-brand-medium">
                 <div className="mb-5 flex size-9 items-center justify-center rounded-full border border-brand-medium bg-brand-frost">
                   <card.icon className="size-4.5 text-brand-muted" />
                 </div>
                 <h3 className="text-lg font-semibold text-zinc-100">{card.title}</h3>
                 <p className="mt-2.5 text-base leading-relaxed text-zinc-500">{card.description}</p>
               </TiltCard>
-            </motion.article>
+            </StaggerItem>
           ))}
-        </motion.div>
+        </StaggerParent>
       </section>
 
       <section className="mx-auto mt-12 w-full max-w-[90rem] px-4 sm:px-6 md:mt-16">
         <div className="p-3 sm:p-6 md:p-10">
-          <div className="mb-8 text-center">
+          <FadeUp className="mb-8 text-center">
             <p className={`${sectionLabelChipClassName} mx-auto mb-3`}>Process Flow</p>
             <h3 className="text-3xl font-semibold tracking-tight text-zinc-100 sm:text-4xl md:text-5xl">How We Work</h3>
-          </div>
+          </FadeUp>
 
-          <div className="relative hidden h-[360px] lg:block">
+          <StaggerParent className="relative hidden h-[360px] lg:block">
             <svg viewBox="0 0 1200 360" className="absolute inset-0 h-full w-full" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
               <defs>
                 <filter id="processGlow" x="-30%" y="-30%" width="160%" height="160%">
@@ -110,59 +95,60 @@ export function HomeSections() {
             </svg>
 
             {processSteps.map((step, idx) => (
-              <div
+              <StaggerItem
                 key={step.title}
                 className="group absolute -translate-x-1/2 -translate-y-1/2 transition-transform duration-300 ease-out hover:-translate-y-[56%]"
                 style={{ left: processCurveLayout[idx].left, top: processCurveLayout[idx].top }}
               >
-                <div className="shadow-brand-node shadow-brand-node-hover mx-auto flex size-12 items-center justify-center rounded-full border border-brand-medium bg-black transition duration-300 group-hover:scale-110">
+                <div className="shadow-brand-node shadow-brand-node-hover mx-auto flex size-12 items-center justify-center rounded-full border border-brand-medium bg-black transition duration-300 group-hover:scale-105">
                   <step.icon className="size-5 text-brand-muted" />
                 </div>
                 <div className="shadow-brand-tooltip mt-3 w-52 rounded-xl border border-brand-subtle bg-black/65 p-3 text-center backdrop-blur-sm transition duration-300 group-hover:border-brand-medium group-hover:bg-black/85">
                   <p className="text-base font-semibold text-zinc-100">{step.title}</p>
                   <p className="mt-1 text-sm leading-relaxed text-zinc-400">{step.description}</p>
                 </div>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerParent>
 
-          <div className="grid gap-4 lg:hidden sm:grid-cols-2">
+          <StaggerParent className="grid gap-4 lg:hidden sm:grid-cols-2">
             {processSteps.map((step) => (
-              <article
-                key={`${step.title}-mobile`}
-                className="shadow-brand-card-hover rounded-2xl border border-brand-medium bg-black/40 p-4 transition duration-300 hover:-translate-y-1 hover:border-brand-strong hover:bg-black/60"
-              >
-                <div className="mb-3 flex size-9 items-center justify-center rounded-full border border-brand-strong bg-brand-frost transition duration-300 hover:scale-105 hover:border-brand-medium">
-                  <step.icon className="size-4.5 text-brand-muted" />
-                </div>
-                <h4 className="text-base font-semibold text-zinc-100">{step.title}</h4>
-                <p className="mt-1.5 text-sm text-zinc-400">{step.description}</p>
-              </article>
+              <StaggerItem key={`${step.title}-mobile`}>
+                <article className="shadow-brand-card-hover rounded-2xl border border-brand-medium bg-black/40 p-4 transition duration-300 hover:-translate-y-1 hover:border-brand-strong hover:bg-black/60">
+                  <div className="mb-3 flex size-9 items-center justify-center rounded-full border border-brand-strong bg-brand-frost transition duration-300 hover:scale-105 hover:border-brand-medium">
+                    <step.icon className="size-4.5 text-brand-muted" />
+                  </div>
+                  <h4 className="text-base font-semibold text-zinc-100">{step.title}</h4>
+                  <p className="mt-1.5 text-sm text-zinc-400">{step.description}</p>
+                </article>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerParent>
         </div>
       </section>
 
       <section className="mx-auto mt-16 w-full max-w-[90rem] px-4 sm:px-6 md:mt-20">
-        <div className="mb-9 sm:mb-11">
+        <FadeUp className="mb-9 sm:mb-11">
           <div className={`${sectionLabelChipClassName} mx-auto mb-5`}>Why Choose LogozoDev?</div>
           <h2 className="text-center text-2xl font-semibold tracking-tight text-white sm:text-3xl md:text-4xl lg:text-5xl">
             More Than Just a Service Provider
           </h2>
-          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
-            {whyChooseItems.map((item) => (
-              <article key={item.title} className="rounded-2xl border border-brand-medium bg-gradient-brand-card-deep p-5 text-center">
+        </FadeUp>
+        <StaggerParent className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+          {whyChooseItems.map((item) => (
+            <StaggerItem key={item.title}>
+              <article className="h-full rounded-2xl border border-brand-medium bg-gradient-brand-card-deep p-5 text-center">
                 <div className="mx-auto inline-flex size-10 items-center justify-center rounded-full border border-brand-medium bg-brand-frost shadow-brand-icon">
                   <item.icon className="size-5 text-[var(--brand)]" aria-hidden />
                 </div>
                 <h3 className="mt-4 text-xl font-semibold tracking-tight text-zinc-100">{item.title}</h3>
                 <p className="mt-2 text-base leading-relaxed text-zinc-400">{item.description}</p>
               </article>
-            ))}
-          </div>
-        </div>
+            </StaggerItem>
+          ))}
+        </StaggerParent>
 
-        <div className="mt-20 mb-9 sm:mt-24 sm:mb-11">
+        <FadeUp className="mt-20 mb-9 sm:mt-24 sm:mb-11">
           <div className={`${sectionLabelChipClassName} mx-auto mb-5 -translate-y-1`}>Client Testimonials</div>
           <h2 className="text-center text-2xl font-semibold tracking-tight text-white sm:text-3xl md:text-4xl lg:text-5xl">
             What clients say about LogozoDev
@@ -170,7 +156,7 @@ export function HomeSections() {
           <p className="mx-auto mt-4 max-w-3xl text-center text-base text-white sm:text-lg">
             Strong delivery and practical communication are why clients trust us with critical business projects.
           </p>
-        </div>
+        </FadeUp>
         <TestimonialsCarousel items={testimonials} />
       </section>
     </>

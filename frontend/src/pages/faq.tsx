@@ -1,3 +1,4 @@
+import { FadeUp, StaggerItem, StaggerParent } from '@/components/motion/reveal'
 import { PageContainer, sectionLabelChipClassName } from '@/components/page-sections'
 
 const faqs = [
@@ -22,27 +23,35 @@ export default function FAQPage() {
     <div className="min-h-screen text-white">
       <PageContainer>
         <main className="mx-auto mt-8 w-full max-w-[90rem] px-4 sm:px-6 md:mt-10">
-          <section className="mx-auto max-w-5xl text-center">
-            <p className={`${sectionLabelChipClassName} mx-auto mb-4`}>FAQ</p>
-            <h1 className="text-3xl font-semibold tracking-tight text-zinc-100 sm:text-4xl md:text-6xl">Frequently Asked Questions</h1>
-            <p className="mx-auto mt-4 max-w-3xl text-base text-zinc-400 sm:text-lg">Find answers to common questions about our services, process, and support.</p>
-          </section>
+          <FadeUp>
+            <section className="mx-auto max-w-5xl text-center">
+              <p className={`${sectionLabelChipClassName} mx-auto mb-4`}>FAQ</p>
+              <h1 className="text-3xl font-semibold tracking-tight text-zinc-100 sm:text-4xl md:text-6xl">Frequently Asked Questions</h1>
+              <p className="mx-auto mt-4 max-w-3xl text-base text-zinc-400 sm:text-lg">Find answers to common questions about our services, process, and support.</p>
+            </section>
+          </FadeUp>
           <section className="mx-auto mt-12 max-w-6xl space-y-4">
-            {faqs.map((faq) => (
-              <article key={faq.question} className="rounded-2xl border border-brand-subtle bg-brand-frost p-5 sm:p-6">
-                <h2 className="text-lg font-semibold text-zinc-100 sm:text-xl">{faq.question}</h2>
-                <p className="mt-3 text-base leading-relaxed text-zinc-400">{faq.answer}</p>
-              </article>
-            ))}
+            <StaggerParent className="flex flex-col gap-4">
+              {faqs.map((faq) => (
+                <StaggerItem key={faq.question}>
+                  <article className="rounded-2xl border border-brand-subtle bg-brand-frost p-5 sm:p-6">
+                    <h2 className="text-lg font-semibold text-zinc-100 sm:text-xl">{faq.question}</h2>
+                    <p className="mt-3 text-base leading-relaxed text-zinc-400">{faq.answer}</p>
+                  </article>
+                </StaggerItem>
+              ))}
+            </StaggerParent>
           </section>
-          <section className="mx-auto mt-12 max-w-5xl rounded-3xl border panel-glass p-6 text-center sm:p-8 md:mt-14 md:p-10">
-            <h3 className="text-2xl font-semibold text-zinc-100 sm:text-3xl">Still have questions?</h3>
-            <p className="mt-3 text-base text-zinc-400">Feel free to contact us — we are happy to help.</p>
-            <div className="mt-5 space-y-1 text-base text-zinc-300">
-              <p>Email: hello@logozodev.com</p>
-              <p>Phone: +94 74 152 5537</p>
-            </div>
-          </section>
+          <FadeUp className="mt-12 md:mt-14">
+            <section className="mx-auto max-w-5xl rounded-3xl border panel-glass p-6 text-center sm:p-8 md:p-10">
+              <h3 className="text-2xl font-semibold text-zinc-100 sm:text-3xl">Still have questions?</h3>
+              <p className="mt-3 text-base text-zinc-400">Feel free to contact us — we are happy to help.</p>
+              <div className="mt-5 space-y-1 text-base text-zinc-300">
+                <p>Email: hello@logozodev.com</p>
+                <p>Phone: +94 74 152 5537</p>
+              </div>
+            </section>
+          </FadeUp>
         </main>
       </PageContainer>
     </div>

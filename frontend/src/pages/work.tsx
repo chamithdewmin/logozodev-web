@@ -1,10 +1,13 @@
 import { useMemo, useState } from 'react'
+import { FadeUp, StaggerItem, StaggerParent } from '@/components/motion/reveal'
 import { CTASection, PageContainer, PageHero, SectionHeading } from '@/components/page-sections'
 import { TestimonialsCarousel } from '@/components/testimonials-carousel'
+import { AnimatedCounter } from '@/components/ui/animated-counter'
 import { WorkProjectCard } from '@/components/work-project-card'
 import { WorkProjectModal } from '@/components/work-project-modal'
-import type { WorkProject } from '@/types/work-project'
+import { parseDisplayStat } from '@/lib/parse-display-stat'
 import { cn } from '@/lib/utils'
+import type { WorkProject } from '@/types/work-project'
 import { Clock3, Rocket, Smile, TrendingUp } from 'lucide-react'
 
 const projects: WorkProject[] = [
@@ -193,27 +196,36 @@ export default function WorkPage() {
               ))}
             </div>
           </div>
-          <div className="grid gap-5 md:grid-cols-2">
+          <StaggerParent className="grid gap-5 md:grid-cols-2">
             {filteredProjects.map((project) => (
-              <WorkProjectCard key={project.slug} project={project} onOpen={() => setActiveProject(project)} />
+              <StaggerItem key={project.slug}>
+                <WorkProjectCard project={project} onOpen={() => setActiveProject(project)} />
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerParent>
         </section>
 
         <section className="mx-auto mt-10 w-full max-w-7xl px-4 sm:px-6 md:mt-12">
-          <div className="grid gap-2 rounded-3xl border border-brand-medium bg-gradient-brand-card-deep p-3 sm:grid-cols-2 sm:gap-3 sm:p-4 lg:grid-cols-4">
-            {workStats.map((stat) => (
-              <article key={stat.label} className="flex items-center gap-3 rounded-2xl p-3 sm:p-4 lg:rounded-none lg:p-4 lg:not-last:border-r lg:not-last:border-brand-medium">
-                <div className="inline-flex size-10 shrink-0 items-center justify-center rounded-xl border border-brand-medium bg-brand-frost">
-                  <stat.icon className="size-5 text-[var(--brand)]" aria-hidden />
-                </div>
-                <div>
-                  <p className="text-3xl font-semibold leading-none text-[var(--brand)]">{stat.value}</p>
-                  <p className="mt-1 text-sm text-zinc-300">{stat.label}</p>
-                </div>
-              </article>
-            ))}
-          </div>
+          <FadeUp>
+            <div className="grid gap-2 rounded-3xl border border-brand-medium bg-gradient-brand-card-deep p-3 sm:grid-cols-2 sm:gap-3 sm:p-4 lg:grid-cols-4">
+              {workStats.map((stat) => {
+                const parsed = parseDisplayStat(stat.value)
+                return (
+                  <article key={stat.label} className="flex items-center gap-3 rounded-2xl p-3 sm:p-4 lg:rounded-none lg:p-4 lg:not-last:border-r lg:not-last:border-brand-medium">
+                    <div className="inline-flex size-10 shrink-0 items-center justify-center rounded-xl border border-brand-medium bg-brand-frost">
+                      <stat.icon className="size-5 text-[var(--brand)]" aria-hidden />
+                    </div>
+                    <div>
+                      <p className="text-3xl font-semibold leading-none text-[var(--brand)] tabular-nums">
+                        {parsed ? <AnimatedCounter value={parsed.value} suffix={parsed.suffix} durationMs={900} /> : stat.value}
+                      </p>
+                      <p className="mt-1 text-sm text-zinc-300">{stat.label}</p>
+                    </div>
+                  </article>
+                )
+              })}
+            </div>
+          </FadeUp>
         </section>
 
         <section className="mx-auto mt-16 w-full max-w-7xl px-4 sm:px-6 md:mt-20">

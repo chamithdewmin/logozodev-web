@@ -2,7 +2,16 @@ import { useEffect, useState } from 'react'
 import { useInView, useReducedMotion } from 'framer-motion'
 import { useRef } from 'react'
 
-export function AnimatedCounter({ value, suffix = '' }: { value: number; suffix?: string }) {
+export function AnimatedCounter({
+  value,
+  suffix = '',
+  durationMs = 950,
+}: {
+  value: number
+  suffix?: string
+  /** Count-up duration when in view */
+  durationMs?: number
+}) {
   const ref = useRef<HTMLSpanElement | null>(null)
   const inView = useInView(ref, { once: true, margin: '-80px' })
   const reduceMotion = useReducedMotion()
@@ -17,7 +26,7 @@ export function AnimatedCounter({ value, suffix = '' }: { value: number; suffix?
 
     let frameId = 0
     const start = performance.now()
-    const duration = 1200
+    const duration = durationMs
 
     const tick = (now: number) => {
       const progress = Math.min((now - start) / duration, 1)
@@ -27,7 +36,7 @@ export function AnimatedCounter({ value, suffix = '' }: { value: number; suffix?
 
     frameId = requestAnimationFrame(tick)
     return () => cancelAnimationFrame(frameId)
-  }, [inView, reduceMotion, value])
+  }, [inView, reduceMotion, value, durationMs])
 
   return (
     <span ref={ref}>

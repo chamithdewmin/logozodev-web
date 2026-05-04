@@ -14,7 +14,7 @@ export function WorkProjectCard({ project, onOpen }: WorkProjectCardProps) {
       <article
         className={cn(
           'relative overflow-hidden rounded-3xl border border-brand-subtle bg-zinc-950/95 shadow-brand-card-hover transition-[transform,box-shadow] duration-200',
-          'hover:-translate-y-0.5 hover:shadow-[0_0_28px_rgb(255_255_255_/0.08)]',
+          'hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_0_28px_rgb(255_255_255_/0.08)]',
         )}
       >
         <div className="relative">
@@ -42,7 +42,7 @@ export function WorkProjectCard({ project, onOpen }: WorkProjectCardProps) {
             ))}
           </div>
           <span
-            className="absolute bottom-3 right-3 grid size-12 place-items-center rounded-full border border-white/14 bg-black transition-transform duration-200 group-hover:rotate-12"
+            className="absolute bottom-3 right-3 grid size-12 place-items-center rounded-full border border-white/14 bg-black transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
             aria-hidden
           >
             <ArrowUpRight className="size-5 text-white" strokeWidth={2} />

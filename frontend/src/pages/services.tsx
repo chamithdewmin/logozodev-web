@@ -1,5 +1,6 @@
 import { ArrowRight, Bot, Brush, CheckCircle2, Cpu, Headset, MonitorSmartphone, ReceiptText, Target, TrendingUp, Wrench } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import { SlideInX, StaggerItem, StaggerParent } from '@/components/motion/reveal'
 import { CTASection, PageContainer, PageHero, SectionHeading } from '@/components/page-sections'
 import customSoftwareImage from '@/assets/custome software.png'
 import graphicImage from '@/assets/graphic.png'
@@ -62,6 +63,13 @@ const serviceHighlights = [
   },
 ]
 
+const serviceImageSlideIndex: Record<string, number> = {
+  'Website Development': 0,
+  'POS Systems': 1,
+  'Graphic Design & Branding': 2,
+  'Custom Software Solutions': 3,
+}
+
 function toBullets(details: string): string[] {
   return details
     .replace(/\.$/, '')
@@ -94,72 +102,85 @@ export default function ServicesPage() {
             title="Clear solutions. Measurable value."
             description="Each service is designed to solve real operational problems and help your business grow faster with the right technology."
           />
-          <div className="grid gap-5 md:grid-cols-2">
-            {services.map((service, idx) => (
-              <article
-                key={service.title}
-                className="group relative overflow-hidden rounded-3xl border border-brand-medium bg-gradient-brand-card-deep p-6 transition duration-300 hover:-translate-y-1 hover:border-brand-strong hover:shadow-[0_18px_55px_rgba(0,0,0,0.45)] sm:p-7 md:p-8 [&:last-child]:md:col-span-2"
-              >
-                <div className="flex items-start justify-between gap-4">
-                  <div className="shadow-brand-icon inline-flex size-12 items-center justify-center rounded-2xl border border-brand-medium bg-brand-frost transition duration-300 group-hover:scale-105 group-hover:border-brand-strong group-hover:bg-white/10">
-                    <service.icon className="size-6 text-brand-muted" />
-                  </div>
-                  <span className="font-mono text-base font-semibold tabular-nums text-[var(--brand)] sm:text-lg">
-                    {String(idx + 1).padStart(2, '0')}
-                  </span>
-                </div>
+          <StaggerParent className="grid gap-5 md:grid-cols-2">
+            {services.map((service, idx) => {
+              const slideIdx = serviceImageSlideIndex[service.title]
+              const slideDir = slideIdx !== undefined && slideIdx % 2 === 0 ? 'left' : 'right'
 
-                <h3 className="mt-6 text-xl font-semibold tracking-tight text-zinc-100 sm:text-2xl">{service.title}</h3>
-                <p className="mt-3 text-base leading-relaxed text-zinc-400">{service.value}</p>
-                {service.title === 'Website Development' ? (
-                  <img src={webImage} alt="Website development showcase" className="mt-5 h-auto w-full rounded-2xl object-contain" />
-                ) : null}
-                {service.title === 'POS Systems' ? <img src={posImage} alt="POS system interface" className="mt-5 h-auto w-full rounded-2xl object-contain" /> : null}
-                {service.title === 'Graphic Design & Branding' ? (
-                  <img src={graphicImage} alt="Graphic design and branding showcase" className="mt-5 h-auto w-full rounded-2xl object-contain" />
-                ) : null}
-                {service.title === 'Custom Software Solutions' ? (
-                  <img src={customSoftwareImage} alt="Custom software solutions showcase" className="mt-5 h-auto w-full rounded-2xl object-contain" />
-                ) : null}
+              return (
+                <StaggerItem key={service.title} className={idx === services.length - 1 ? 'md:col-span-2' : undefined}>
+                  <article className="group relative h-full overflow-hidden rounded-3xl border border-brand-medium bg-gradient-brand-card-deep p-6 transition duration-300 hover:-translate-y-1 hover:border-brand-strong hover:shadow-[0_18px_55px_rgba(0,0,0,0.45)] sm:p-7 md:p-8">
+                    <div className="flex items-start justify-between gap-4">
+                      <div className="shadow-brand-icon inline-flex size-12 items-center justify-center rounded-2xl border border-brand-medium bg-brand-frost transition duration-300 group-hover:scale-[1.03] group-hover:border-brand-strong group-hover:bg-white/10">
+                        <service.icon className="size-6 text-brand-muted" />
+                      </div>
+                      <span className="font-mono text-base font-semibold tabular-nums text-[var(--brand)] sm:text-lg">
+                        {String(idx + 1).padStart(2, '0')}
+                      </span>
+                    </div>
 
-                <ul className="mt-5 space-y-2.5">
-                  {toBullets(service.details).map((bullet, bulletIdx) => (
-                    <li key={`${service.title}-${bulletIdx}`} className="flex items-start gap-2.5 text-[0.95rem] text-zinc-300">
-                      <CheckCircle2 className="mt-0.5 size-[1.125rem] shrink-0 text-[var(--brand)]" aria-hidden />
-                      <span>{bullet}</span>
-                    </li>
-                  ))}
-                </ul>
+                    <h3 className="mt-6 text-xl font-semibold tracking-tight text-zinc-100 sm:text-2xl">{service.title}</h3>
+                    <p className="mt-3 text-base leading-relaxed text-zinc-400">{service.value}</p>
+                    {service.title === 'Website Development' ? (
+                      <SlideInX direction={slideDir} className="mt-5 block">
+                        <img src={webImage} alt="Website development showcase" className="h-auto w-full rounded-2xl object-contain" />
+                      </SlideInX>
+                    ) : null}
+                    {service.title === 'POS Systems' ? (
+                      <SlideInX direction={slideDir} className="mt-5 block">
+                        <img src={posImage} alt="POS system interface" className="h-auto w-full rounded-2xl object-contain" />
+                      </SlideInX>
+                    ) : null}
+                    {service.title === 'Graphic Design & Branding' ? (
+                      <SlideInX direction={slideDir} className="mt-5 block">
+                        <img src={graphicImage} alt="Graphic design and branding showcase" className="h-auto w-full rounded-2xl object-contain" />
+                      </SlideInX>
+                    ) : null}
+                    {service.title === 'Custom Software Solutions' ? (
+                      <SlideInX direction={slideDir} className="mt-5 block">
+                        <img src={customSoftwareImage} alt="Custom software solutions showcase" className="h-auto w-full rounded-2xl object-contain" />
+                      </SlideInX>
+                    ) : null}
 
-                <Link
-                  to="/contact-us"
-                  className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-zinc-100 transition-colors hover:text-[var(--brand)]"
-                >
-                  Learn More
-                  <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden />
-                </Link>
-              </article>
-            ))}
-          </div>
+                    <ul className="mt-5 space-y-2.5">
+                      {toBullets(service.details).map((bullet, bulletIdx) => (
+                        <li key={`${service.title}-${bulletIdx}`} className="flex items-start gap-2.5 text-[0.95rem] text-zinc-300">
+                          <CheckCircle2 className="mt-0.5 size-[1.125rem] shrink-0 text-[var(--brand)]" aria-hidden />
+                          <span>{bullet}</span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    <Link
+                      to="/contact-us"
+                      className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-zinc-100 transition-colors hover:text-[var(--brand)]"
+                    >
+                      Learn More
+                      <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden />
+                    </Link>
+                  </article>
+                </StaggerItem>
+              )
+            })}
+          </StaggerParent>
         </section>
 
         <section className="mx-auto mt-14 w-full max-w-7xl px-4 sm:px-6 md:mt-16">
-          <div className="grid gap-2 rounded-3xl border border-brand-medium bg-gradient-brand-card-deep p-3 sm:grid-cols-2 sm:gap-3 sm:p-4 lg:grid-cols-4">
-            {serviceHighlights.map((item, idx) => (
-              <article
-                key={item.title}
-                className="flex items-start gap-3 rounded-2xl p-3 sm:p-4 lg:rounded-none lg:p-4 lg:not-last:border-r lg:not-last:border-brand-medium"
-              >
-                <div className="inline-flex size-10 shrink-0 items-center justify-center rounded-xl border border-brand-medium bg-brand-frost">
-                  <item.icon className="size-5 text-[var(--brand)]" aria-hidden />
-                </div>
-                <div>
-                  <h3 className="text-sm font-semibold text-zinc-100">{item.title}</h3>
-                  <p className="mt-1 text-sm text-zinc-400">{item.description}</p>
-                </div>
-              </article>
+          <StaggerParent className="grid gap-2 rounded-3xl border border-brand-medium bg-gradient-brand-card-deep p-3 sm:grid-cols-2 sm:gap-3 sm:p-4 lg:grid-cols-4">
+            {serviceHighlights.map((item) => (
+              <StaggerItem key={item.title}>
+                <article className="flex h-full items-start gap-3 rounded-2xl p-3 sm:p-4 lg:rounded-none lg:p-4 lg:not-last:border-r lg:not-last:border-brand-medium">
+                  <div className="inline-flex size-10 shrink-0 items-center justify-center rounded-xl border border-brand-medium bg-brand-frost">
+                    <item.icon className="size-5 text-[var(--brand)]" aria-hidden />
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-semibold text-zinc-100">{item.title}</h3>
+                    <p className="mt-1 text-sm text-zinc-400">{item.description}</p>
+                  </div>
+                </article>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerParent>
         </section>
 
         <CTASection
